@@ -3,9 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#151a22">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="TennisBall">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>TennisBall</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="mobile-display.css">
     <!-- Start the big downloads before godot.js even runs; the dotnet.* files
          are otherwise only discovered mid-boot. (When enabling TWODOG_PCK_GZ
          below, swap both hints to their .gz siblings: godot.pck.gz, and
@@ -30,7 +38,6 @@
             color: white;
             background-color: black;
             overflow: hidden;
-            touch-action: none;
         }
 
         #canvas {
@@ -114,25 +121,47 @@
 </head>
 
 <body>
-    <canvas id="canvas">
-        Your browser does not support the canvas tag.
-    </canvas>
+    <main id="game-shell">
+        <div id="display-toolbar" hidden>
+            <button id="fullscreen-button" type="button" aria-pressed="false" aria-expanded="false"
+                aria-controls="display-help" title="Enter fullscreen">
+                <span aria-hidden="true">⛶</span><span id="fullscreen-label">Fullscreen</span>
+            </button>
+        </div>
+        <section id="display-help" aria-label="Display help" hidden>
+            <p id="display-message" role="status" aria-live="polite"></p>
+            <p id="home-screen-instructions">
+                <strong>iPhone:</strong> Share → Add to Home Screen → Add. Keep <em>Open as Web App</em> enabled
+                if offered, then launch TennisBall from the Home Screen.<br>
+                <strong>Android:</strong> Browser menu → Install app or Add to Home screen, then open TennisBall.
+            </p>
+            <button id="display-help-close" type="button">Close</button>
+        </section>
+        <div id="game-viewport">
+            <canvas id="canvas" tabindex="0" aria-label="TennisBall game">
+                Your browser does not support the canvas tag.
+            </canvas>
 
-    <noscript>
-        Your browser does not support JavaScript.
-    </noscript>
+            <noscript>
+                Your browser does not support JavaScript.
+            </noscript>
 
-    <div id="status">
-        <div id="status-splash" role="img" aria-label="Tennis ball" style="font-size:96px;text-align:center">🎾</div><h1>TennisBall</h1>
-        <progress id="status-progress" aria-label="Loading progress"></progress>
-        <div id="status-notice" role="alert"></div>
-    </div>
+            <div id="status">
+                <div id="status-splash" role="img" aria-label="Tennis ball" style="font-size:96px;text-align:center">🎾</div><h1>TennisBall</h1>
+                <progress id="status-progress" aria-label="Loading progress"></progress>
+                <div id="status-notice" role="alert"></div>
+            </div>
+        </div>
+    </main>
 
+    <script src="mobile-display.js"></script>
     <script src="godot.js"></script>
     <script>
         const GODOT_CONFIG = {
             'args': ['--rendering-method', 'gl_compatibility'],
-            'canvasResizePolicy': 2,
+            // The wrapper owns sizing so controls and safe areas stay outside
+            // gameplay. Policy 0 makes Godot follow the canvas backing size.
+            'canvasResizePolicy': 0,
             'ensureCrossOriginIsolationHeaders': false,
             'executable': 'godot',
             'experimentalVK': false,
