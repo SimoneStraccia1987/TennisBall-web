@@ -42,6 +42,21 @@
     function updateButton() {
         const active = Boolean(fullscreenElement());
         const supported = Boolean(fullscreenApi());
+        // An installed app without game fullscreen already has no browser
+        // toolbars. Remove the redundant App mode control and its entire row.
+        const hideToolbar = launchedAsApp() && !supported && !active;
+        const returnFocusToCanvas = hideToolbar
+            && (toolbar.contains(document.activeElement) || help.contains(document.activeElement));
+        if (toolbar.hidden !== hideToolbar) {
+            toolbar.hidden = hideToolbar;
+            scheduleResize();
+        }
+        if (hideToolbar) {
+            if (returnFocusToCanvas) {
+                canvas.focus({ preventScroll: true });
+            }
+            help.hidden = true;
+        }
         label.textContent = active ? 'Exit fullscreen' : supported ? 'Fullscreen' : launchedAsApp() ? 'App mode' : 'Home Screen';
         button.title = active ? 'Exit fullscreen' : supported ? 'Enter fullscreen'
             : launchedAsApp() ? 'Home Screen app mode' : 'Play without browser toolbars: Home Screen instructions';
@@ -171,7 +186,6 @@
         if (mode.addEventListener) mode.addEventListener('change', updateButton);
         else if (mode.addListener) mode.addListener(updateButton);
     }
-    toolbar.hidden = false;
     updateButton();
     resizeCanvas();
 }());
