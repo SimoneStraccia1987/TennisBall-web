@@ -35,12 +35,12 @@ if (_nativeModuleLoaded) throw new Error("Native module already loaded");
 _nativeModuleLoaded = true;
 createDotnetRuntime = Module = moduleArg(Module);
 // end include: C:\Users\sarev\Documents\TennisBall\Build\Tools\dotnet\packs\Microsoft.NETCore.App.Runtime.Mono.browser-wasm\10.0.12\runtimes\browser-wasm\native\src\es6\dotnet.es6.pre.js
-// include: C:\Users\sarev\Documents\TennisBall\Build\Tools\dotnet-cli-home\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\pre_js\callMain_stub.js
+// include: C:\Users\sarev\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\pre_js\callMain_stub.js
 // 2dog: library builds have no C main, but Emscripten requires this exported runtime symbol.
 const callMain = function (_args) { // eslint-disable-line no-unused-vars
 	throw new Error('"callMain" is not implemented.');
 };
-// end include: C:\Users\sarev\Documents\TennisBall\Build\Tools\dotnet-cli-home\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\pre_js\callMain_stub.js
+// end include: C:\Users\sarev\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\pre_js\callMain_stub.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -15743,7 +15743,7 @@ run();
 
 // end include: postamble.js
 
-// include: C:\Users\sarev\Documents\TennisBall\Build\Tools\dotnet-cli-home\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\post_js\patch_em_gl.js
+// include: C:\Users\sarev\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\post_js\patch_em_gl.js
 /**************************************************************************/
 /*  patch_em_gl.js                                                        */
 /**************************************************************************/
@@ -15793,7 +15793,7 @@ addOnPostRun(function () {
 		return source;
 	};
 });
-// end include: C:\Users\sarev\Documents\TennisBall\Build\Tools\dotnet-cli-home\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\post_js\patch_em_gl.js
+// end include: C:\Users\sarev\.nuget\packages\2dog.browser-wasm.release\4.7.2.11\godot-web\libgodot\post_js\patch_em_gl.js
 
 
 
