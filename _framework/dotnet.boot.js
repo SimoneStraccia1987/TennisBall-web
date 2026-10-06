@@ -1,7 +1,7 @@
 export const config = /*json-start*/{
   "mainAssemblyName": "TennisBall.web.dll",
   "resources": {
-    "hash": "sha256-/I6BWbRvfVhmvBLN+pOd/Ho+UAnmCgG7J9ck92Cv84E=",
+    "hash": "sha256-e6xXZgLKdSjbGjKhPLCSVX6oqGBZsVEpI9c33kn6fro=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.js"
@@ -15,7 +15,7 @@ export const config = /*json-start*/{
     "wasmNative": [
       {
         "name": "dotnet.native.wasm",
-        "hash": "sha256-cqJtUnozESNX6Xp4hkLADySVQp0uKSrwSj70Cip6hrE="
+        "hash": "sha256-aAJNJr14wrHuceqkoP/2HfboBuTbw7tQxyGvHZ/O4KM="
       }
     ],
     "icu": [
@@ -39,7 +39,7 @@ export const config = /*json-start*/{
       {
         "virtualPath": "System.Private.CoreLib.wasm",
         "name": "System.Private.CoreLib.wasm",
-        "hash": "sha256-Hk0yXBWAIhCsB4nQmaofmJdVTcGkZEeDtzcnPQaTqp0="
+        "hash": "sha256-Rc4PrgYdJbYo4Y/BS4azNjNpUBvV04rx7JUbYlOdZNg="
       },
       {
         "virtualPath": "System.Runtime.InteropServices.JavaScript.wasm",
@@ -171,12 +171,12 @@ export const config = /*json-start*/{
       {
         "virtualPath": "TennisBall.wasm",
         "name": "TennisBall.wasm",
-        "hash": "sha256-5Lp8xw9FOjEnhpw0o6OEXaTuiD1kGiqwsGE0yYZTAmw="
+        "hash": "sha256-QcZf+baEYfZzuu92kHXFuOUoJRxYOt8SYNdcKGhmrwQ="
       },
       {
         "virtualPath": "TennisBall.web.wasm",
         "name": "TennisBall.web.wasm",
-        "hash": "sha256-k0EQfrN8nUVxDSrwZ/IuTLDDuIBUnXladyh+iB4wr9c="
+        "hash": "sha256-k5eILX5htffFHSpKSV6TWsae2jKkbFe9QGJCo+ogXGQ="
       },
       {
         "virtualPath": "twodog.wasm",
