@@ -1,118 +1,42 @@
+/* Canvas-only host. Godot owns all visible presentation and controls. */
 html,
 body {
+    margin: 0;
+    padding: 0;
+    border: 0;
     width: 100%;
     height: 100%;
-    overscroll-behavior: none;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-#game-shell {
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    width: var(--viewport-width, 100%);
-    height: var(--viewport-height, 100dvh);
-    display: flex;
-    flex-direction: column;
-    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
-        env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
-    background: #151a22;
-    font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-    color: white;
-}
-
-#display-toolbar {
-    flex: none;
-    display: flex;
-    justify-content: flex-end;
-    padding: 4px 8px;
-}
-
-#game-shell button {
-    min-width: 44px;
-    min-height: 44px;
-    box-sizing: border-box;
-    padding: 6px 12px;
-    border: 1px solid #64748b;
-    border-radius: 8px;
-    background: #252e3b;
-    color: white;
-    font: inherit;
-    font-size: 13px;
-    cursor: pointer;
-    touch-action: manipulation;
-}
-
-#fullscreen-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-#fullscreen-button > span:first-child {
-    font-size: 22px;
-}
-
-#game-shell button:focus-visible {
-    outline: 2px solid #c9ef77;
-    outline-offset: 2px;
-}
-
-#game-shell button:disabled {
-    opacity: 0.65;
-    cursor: wait;
-}
-
-#display-help {
-    flex: none;
-    position: relative;
-    padding: 8px 76px 12px 12px;
-    max-height: 40%;
-    overflow: auto;
-    touch-action: pan-y;
-    border-bottom: 1px solid #64748b;
-    font-size: 13px;
-    line-height: 1.45;
-}
-
-#display-help p {
-    margin: 0 0 6px;
-}
-
-#display-help-close {
-    position: absolute;
-    top: 4px;
-    right: 8px;
-}
-
-#game-viewport {
-    position: relative;
-    flex: 1;
-    min-width: 0;
-    min-height: 0;
     overflow: hidden;
+    overscroll-behavior: none;
     background: black;
 }
 
+#game-shell {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--viewport-width, 100%);
+    height: 100vh;
+    height: var(--viewport-height, 100dvh);
+    /* Safe areas belong to Godot overlays; never shrink the 3D surface. */
+    padding: 0;
+    margin: 0;
+}
+
+#game-viewport,
 #canvas {
+    display: block;
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#canvas {
     touch-action: none;
 }
 
-#game-shell:fullscreen {
-    width: 100%;
-    height: 100%;
-}
-
-#game-shell:-webkit-full-screen {
-    width: 100%;
-    height: 100%;
+#canvas:focus {
+    outline: none;
 }
