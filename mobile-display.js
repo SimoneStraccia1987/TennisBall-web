@@ -8,6 +8,17 @@
     let resizeFrame;
     let dprQuery;
 
+    // Register before the asynchronous engine download. Safari's Home Screen
+    // view must know this surface owns gestures from the first touch, rather
+    // than starting a browser scroll/zoom that cancels Godot's drag stream.
+    // Do not stop propagation: the engine needs the original TouchEvent and
+    // its identifiers, including simultaneous fingers and cancellation.
+    for (const type of ['touchstart', 'touchmove', 'touchend', 'gesturestart', 'gesturechange']) {
+        canvas.addEventListener(type, (event) => {
+            if (event.cancelable) event.preventDefault();
+        }, { capture: true, passive: false });
+    }
+
     function resizeCanvas() {
         resizeFrame = undefined;
         // Follow browser toolbar/keyboard changes without reserving DOM UI or
