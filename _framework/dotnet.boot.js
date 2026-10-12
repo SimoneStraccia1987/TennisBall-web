@@ -1,7 +1,7 @@
 export const config = /*json-start*/{
   "mainAssemblyName": "TennisBall.web.dll",
   "resources": {
-    "hash": "sha256-wdccbUpRWVgjSwfc/CIP5QqInfAqzLQpUxJ1J4/To3I=",
+    "hash": "sha256-SNJHbmwy0p9sl3m9+U4Sh2/h/RfKwsnsP3J+pwTogbc=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.js"
@@ -171,12 +171,12 @@ export const config = /*json-start*/{
       {
         "virtualPath": "TennisBall.wasm",
         "name": "TennisBall.wasm",
-        "hash": "sha256-oVpKzzq/GN2bAMPf5vQFmGPGQFmfWA1b+6FFONWJcBs="
+        "hash": "sha256-L985MBz2ax86ZD8fARNKMbd3CEfvHLiyYe4lcBeOhT8="
       },
       {
         "virtualPath": "TennisBall.web.wasm",
         "name": "TennisBall.web.wasm",
-        "hash": "sha256-UlLA0kJlIgQJWsNemEXT0edWi4g0fwW23VNymRD/2Ps="
+        "hash": "sha256-WVchi9WI/95jtRw2W5ThzpwVhYKYwmCWX/zgbaGLP1g="
       },
       {
         "virtualPath": "twodog.wasm",
