@@ -562,7 +562,7 @@ function drawSimulationStart(){
   if(Math.hypot(p[0]-r[0],p[1]-r[1])>1){ctx.setLineDash([4,5]);line(r,p,'#ac96cb88');ctx.setLineDash([])}
   ctx.setLineDash([3,4]);line(ground,p,color+'88');ctx.beginPath();ctx.ellipse(ground[0],ground[1],9,4,0,0,Math.PI*2);ctx.strokeStyle=color;ctx.stroke();ctx.setLineDash([]);
   // Real start is shown even with Bounds hidden, but this annotation adds no drag handle.
-  ctx.strokeStyle='#b9ed91';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(r[0]-9,r[1]);ctx.lineTo(r[0]+9,r[1]);ctx.moveTo(r[0],r[1]-9);ctx.lineTo(r[0],r[1]+9);ctx.stroke();
+  ctx.strokeStyle='#b9ed91';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(r[0]-24,r[1]);ctx.lineTo(r[0]+24,r[1]);ctx.moveTo(r[0],r[1]-24);ctx.lineTo(r[0],r[1]+24);ctx.stroke();
   const label=(text,x,y,ink)=>{ctx.font='bold 10px Segoe UI';const w=ctx.measureText(text).width;x=Math.max(6,Math.min(width-w-6,x));y=Math.max(16,Math.min(height-8,y));ctx.fillStyle='#15201ff0';ctx.fillRect(x-5,y-12,w+10,18);ctx.fillStyle=ink;ctx.fillText(text,x,y)};
   label('REAL START · SAVED',r[0]+20,r[1]+26,'#b9ed91');
   polygon([[p[0],p[1]-14],[p[0]+14,p[1]],[p[0],p[1]+14],[p[0]-14,p[1]]],'#594277dd',color,previewStartSelected?3:2);
