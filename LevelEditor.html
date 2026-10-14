@@ -184,9 +184,9 @@ function history(back){const from=back?undo:redo,to=back?redo:undo;if(!from.leng
 function toast(s){$('toast').textContent=s;$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').hidden=true,4500)}
 function dialog(title,body,buttons){$('modalBody').innerHTML='<h2>'+esc(title)+'</h2>'+body;$('modalActions').replaceChildren();for(const [label,fn,cls]of buttons){const b=document.createElement('button');b.textContent=label;b.className=cls||'';b.onclick=()=>{$('modal').close();fn?.()};$('modalActions').append(b)}$('modal').showModal()}
 function discardThen(fn){if(serialize(doc)!==savedText)dialog('Replace this scene?','<p>Your current edits have not been exported. Export first if you want to keep them.</p>',[['Cancel'],['Replace scene',fn,'danger']]);else fn()}
-function loadScene(text,file){const next=parse(text);undo.push(snapshot());redo=[];doc=next;selected=null;resetPreviewStart();previewTargetPath='';filename=file;savedText=text;if(!groupShapes('explicit_boundary').length)ensureWaves();refresh();fit();toast('Loaded '+file)}
+function loadScene(text,file){const next=parse(text);undo.push(snapshot());redo=[];doc=next;selected=null;resetPreviewStart();previewTargetPath='';filename=file;savedText=text;previewStartSelected=false;if(!groupShapes('explicit_boundary').length)ensureWaves();refresh();fit();toast('Loaded '+file)}
 function refresh(){renderWaves();renderTree();renderInspector();renderValidation();draw();$('undo').disabled=!undo.length;$('redo').disabled=!redo.length;$('sceneLabel').textContent=name(nodes()[0]);$('status').textContent=filename+' · '+nodes().length+' nodes · '+(serialize(doc)!==savedText?'Unsaved changes':'Ready')}
-function select(b){selected=b;renderWaves();renderTree();renderInspector();draw()}
+function select(b){previewStartSelected=false;selected=b;renderWaves();renderTree();renderInspector();draw()}
 function renderTree(){const root=$('tree');root.replaceChildren();const query=$('search').value.toLowerCase();let list=assetMode?doc.blocks.filter(b=>b.kind.includes('resource')):nodes();for(const b of list){if(!(name(b)+' '+groups(b)+' '+path(b)).toLowerCase().includes(query))continue;const el=document.createElement('button');el.className=(assetMode?'asset':'node')+(b===selected?' active':'');if(!assetMode)el.style.paddingLeft=(8+(path(b)==='.'?0:path(b).split('/').length)*11)+'px';el.innerHTML='<span class="dot" style="background:'+role(b)[2]+'"></span>'+esc(name(b))+(assetMode?'<br><small>'+esc(type(b))+'</small>':'');el.title=assetMode?type(b)+' '+name(b):path(b)+' · '+type(b);el.onclick=()=>select(b);root.append(el)}}
 function field(label,value,onChange,kind='text',opts={}){const wrap=document.createElement('label');wrap.textContent=label;const input=document.createElement('input');input.type=kind;if(kind==='checkbox'){input.checked=value===true||value==='true';wrap.className='check'}else input.value=value;Object.assign(input,opts);input.onchange=()=>onChange(kind==='checkbox'?input.checked:input.value);wrap.append(input);return wrap}
 function section(title){const el=document.createElement('div');el.className='section';if(title){const h=document.createElement('h2');h.textContent=title;el.append(h)}$('inspector').append(el);return el}
@@ -372,7 +372,7 @@ function renderValidation(){let report;try{report=validate()}catch(e){report={er
 // the grid, picking, focus and bounds validation share the same world geometry.
 const canvas=$('canvas'),ctx=canvas.getContext('2d');
 let camera={view:'orbit',yaw:.62,pitch:.57,zoom:23,pan:[0,0],target:[0,1,-2]},mode='select',hits=[],handles=[],pointer=null,width=700,height=650;
-let normalStepDegrees=1,objectRotationDegrees=15;
+let normalStepDegrees=1,objectRotationDegrees=15,previewStartSelected=false;
 // Geometry goes to the service; flight and bounce calculations run in TennisBall.dll.
 let prediction=null,previewKey='',previewTimer=null,previewVersion=0,previewTargetPath='';
 // Snapshot of EditorReactionRunner's imported practice-net geometry for offline editing.
@@ -380,10 +380,10 @@ const embeddedNetModel={"resourcePath":"res://Resources/Render/Meshes/TennisPrac
 let playerTuning={},reactionEdited=false;
 const startPanel=document.createElement('div');startPanel.className='toolbar';
 startPanel.innerHTML='<details open style="width:100%;margin:0"><summary>Launch preview · simulation only</summary><div class="row" style="flex-wrap:wrap;margin-top:10px">'+
- '<label class="check"><input id="previewUseMarker" type="checkbox" checked> Use StartPosition</label>'+
- ['X','Y','Z'].map(axis=>'<label>Start '+axis+' (m)<input id="previewStart'+axis+'" type="number" step=".1" value="0"></label>').join('')+
- '<button id="previewRestoreStart">Restore StartPosition</button><label class="check"><input id="previewAmberPath" type="checkbox"> Show amber bounce-shot trajectory</label></div>'+
- '<p class="small">Start XYZ changes both direct and amber simulations only; it never moves or saves StartPosition. Reaction travel starts at this X/Z on the ground. The authored StartPosition still determines the home court half.</p>'+
+ '<label class="check"><input id="previewUseMarker" type="checkbox" checked> Follow real StartPosition</label>'+
+ ['X','Y','Z'].map(axis=>'<label>Sim '+axis+' (m)<input id="previewStart'+axis+'" type="number" step=".1" value="0"></label>').join('')+
+ '<button id="previewMoveStart">Move simulation start</button><button id="previewRestoreStart">Restore real start</button><label class="check"><input id="previewAmberPath" type="checkbox"> Show amber bounce-shot trajectory</label></div>'+
+ '<p class="small"><span style="color:#d5b5ff">Violet: simulation start · preview only.</span> <span style="color:#b9ed91">Green: real StartPosition · saved.</span> Drag the violet marker in 3D along the ground; use its XYZ handles for height or a single axis. Top moves X/Z, Front X/Y, Side Z/Y. Snap uses metres; Escape cancels a drag. Simulation edits are never saved into the scene.</p><div id="previewOriginStatus" class="small" role="status"></div>'+
  '<div id="amberStatus" role="status" class="small" style="color:#ffc15c">Select a target to preview its amber ground area.</div>'+
  '<p class="small">Amber ring: Training bounce-before-target area. Cyan line: direct shot. Orange dots: physical rebounds. Green/purple rings: player reaction areas.</p></details>';
 canvas.closest('.center').insertBefore(startPanel,canvas.closest('.viewport'));
@@ -397,6 +397,7 @@ function previewStart(marker){
 for(const axis of ['X','Y','Z'])$('previewStart'+axis).oninput=()=>{$('previewUseMarker').checked=false;invalidatePreview()};
 $('previewUseMarker').onchange=()=>invalidatePreview();
 $('previewRestoreStart').onclick=()=>{resetPreviewStart();invalidatePreview()};
+$('previewMoveStart').onclick=()=>{previewStartSelected=true;draw();fit(true)};
 $('previewAmberPath').onchange=()=>draw();
 const reactionPanel=document.createElement('div');reactionPanel.className='toolbar';
 reactionPanel.innerHTML='<details open style="width:100%;margin:0"><summary>Player reaction time · settings and results</summary><details style="margin:8px 0"><summary>Simulation settings</summary><div class="row" style="flex-wrap:wrap;margin-top:10px">'+
@@ -539,6 +540,47 @@ function drawPrediction(){
 }
 $('previewOn').onchange=()=>draw();$('previewRetry').onclick=()=>{previewKey='';draw()};
 
+function simulationOrigin(){const marker=nodes().find(n=>groups(n).includes('start_position'));return marker?{marker,real:world(marker).slice(9),position:previewStart(marker)}:null}
+function previewOriginSnapshot(){return {linked:$('previewUseMarker').checked,values:['X','Y','Z'].map(axis=>$('previewStart'+axis).value)}}
+function restorePreviewOrigin(state){$('previewUseMarker').checked=state.linked;for(const [i,axis] of ['X','Y','Z'].entries())$('previewStart'+axis).value=state.values[i];invalidatePreview()}
+function movePreviewOrigin(position){$('previewUseMarker').checked=false;for(const [i,axis] of ['X','Y','Z'].entries())$('previewStart'+axis).value=fmt(position[i]);invalidatePreview()}
+function simulationDragDelta(start,p,viewAxes,zoom,view){
+ const dx=(p[0]-start[0])/zoom,dy=-(p[1]-start[1])/zoom;
+ if(view!=='orbit')return [0,1,2].map(i=>viewAxes[0][i]*dx+viewAxes[1][i]*dy);
+ const det=viewAxes[0][0]*viewAxes[1][2]-viewAxes[0][2]*viewAxes[1][0];
+ if(Math.abs(det)<.05)throw Error('Use Top view or an axis handle when the ground is edge-on.');
+ return [(dx*viewAxes[1][2]-viewAxes[0][2]*dy)/det,0,(viewAxes[0][0]*dy-dx*viewAxes[1][0])/det];
+}
+function drawSimulationStart(){
+ const status=$('previewOriginStatus'),move=$('previewMoveStart');
+ try{
+  const origin=simulationOrigin();move.disabled=!origin;move.classList.toggle('active',previewStartSelected);
+  if(!origin){status.textContent='Add a real StartPosition to locate the simulation start.';return}
+  const p=project(origin.position),r=project(origin.real),ground=project([origin.position[0],0,origin.position[2]]),color='#d5b5ff';
+  status.textContent=$('previewUseMarker').checked?'Simulation follows the real start. Drag the violet marker to create a preview-only override.':'Independent simulation override · real StartPosition and exported scene are unchanged.';
+  const line=(a,b,stroke,width=1)=>{ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.stroke()};
+  if(Math.hypot(p[0]-r[0],p[1]-r[1])>1){ctx.setLineDash([4,5]);line(r,p,'#ac96cb88');ctx.setLineDash([])}
+  ctx.setLineDash([3,4]);line(ground,p,color+'88');ctx.beginPath();ctx.ellipse(ground[0],ground[1],9,4,0,0,Math.PI*2);ctx.strokeStyle=color;ctx.stroke();ctx.setLineDash([]);
+  // Real start is shown even with Bounds hidden, but this annotation adds no drag handle.
+  ctx.strokeStyle='#b9ed91';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(r[0]-9,r[1]);ctx.lineTo(r[0]+9,r[1]);ctx.moveTo(r[0],r[1]-9);ctx.lineTo(r[0],r[1]+9);ctx.stroke();
+  const label=(text,x,y,ink)=>{ctx.font='bold 10px Segoe UI';const w=ctx.measureText(text).width;x=Math.max(6,Math.min(width-w-6,x));y=Math.max(16,Math.min(height-8,y));ctx.fillStyle='#15201ff0';ctx.fillRect(x-5,y-12,w+10,18);ctx.fillStyle=ink;ctx.fillText(text,x,y)};
+  label('REAL START · SAVED',r[0]+20,r[1]+26,'#b9ed91');
+  polygon([[p[0],p[1]-14],[p[0]+14,p[1]],[p[0],p[1]+14],[p[0]-14,p[1]]],'#594277dd',color,previewStartSelected?3:2);
+  ctx.setLineDash([3,3]);ctx.beginPath();ctx.arc(p[0],p[1],20,0,Math.PI*2);ctx.strokeStyle=color;ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+  label('SIM START · PREVIEW ONLY',p[0]+25,p[1]-(previewStartSelected?88:25),color);
+  const editingReal=mode==='move'&&selected===origin.marker&&!previewStartSelected&&Math.hypot(p[0]-r[0],p[1]-r[1])<20;
+  if(!editingReal)handles.push({kind:'previewFree',p,origin:origin.position});
+  if(previewStartSelected){
+   const colors=['#f4b6c9','#d5b5ff','#a7cff5'];
+   for(let axis=0;axis<3;axis++){
+    const worldPoint=origin.position.slice();worldPoint[axis]+=1;const q=project(worldPoint),dir=[q[0]-p[0],q[1]-p[1]],length=Math.hypot(...dir);if(length/Math.max(camera.zoom,1e-9)<.1)continue;
+    const end=[p[0]+dir[0]/length*58,p[1]+dir[1]/length*58];line(p,end,colors[axis],2);
+    ctx.fillStyle='#202c2a';ctx.fillRect(end[0]-6,end[1]-6,12,12);ctx.strokeStyle=colors[axis];ctx.lineWidth=2;ctx.strokeRect(end[0]-6,end[1]-6,12,12);
+    label('SIM '+'XYZ'[axis],end[0]+10,end[1]-8,colors[axis]);handles.push({kind:'previewAxis',p:end,axis,dir,origin:origin.position});
+   }
+  }
+ }catch(e){move.disabled=true;status.textContent='Simulation start: '+e.message}
+}
 function importedNetVisuals(){
  if(!$('visuals').checked)return [];
  const model=playerTuning.calibrated?playerTuning.netModel:embeddedNetModel;
@@ -592,11 +634,12 @@ function draw(){
   for(const [a,z]of edges){ctx.beginPath();ctx.moveTo(pts[a][0],pts[a][1]);ctx.lineTo(pts[z][0],pts[z][1]);ctx.strokeStyle=chosen?'#e3ff9a':visual?'#d3e0cc65':color+(r[0]==='escape_volume'?'65':'ab');ctx.lineWidth=chosen?2:1;ctx.stroke()}ctx.setLineDash([]);
   for(const f of sorted){const xs=f.pts.map(p=>p[0]),ys=f.pts.map(p=>p[1]);hits.push({b,points:f.pts,area:(Math.max(...xs)-Math.min(...xs))*(Math.max(...ys)-Math.min(...ys))})}
  }
- if(chosen||type(b)==='Marker3D'){ctx.font='11px Segoe UI';const label=name(b);const tw=ctx.measureText(label).width;ctx.fillStyle='#152117ee';ctx.fillRect(origin[0]+11,origin[1]-21,tw+12,20);ctx.fillStyle='#e4f4cc';ctx.fillText(label,origin[0]+17,origin[1]-7)}
+ if((chosen||type(b)==='Marker3D')&&!groups(b).includes('start_position')){ctx.font='11px Segoe UI';const label=groups(b).includes('start_position')?'':name(b);const tw=ctx.measureText(label).width;ctx.fillStyle='#152117ee';ctx.fillRect(origin[0]+11,origin[1]-21,tw+12,20);ctx.fillStyle='#e4f4cc';ctx.fillText(label,origin[0]+17,origin[1]-7)}
  }}
  drawImportedNets();
  drawPrediction();
  drawEditingHandles(objects);
+ drawSimulationStart();
  // Small orientation compass.
  const base=[width-49,height-47],cols=['#df9892','#a4d381','#84aedc'];
  ctx.font='10px Segoe UI';[0,1,2].forEach(i=>{const dx=axesNow[0][i]*25,dy=-axesNow[1][i]*25;ctx.strokeStyle=cols[i];ctx.beginPath();ctx.moveTo(...base);ctx.lineTo(base[0]+dx,base[1]+dy);ctx.stroke();ctx.fillStyle=cols[i];ctx.fillText('XYZ'[i],base[0]+dx+3,base[1]+dy+3)});
@@ -630,12 +673,13 @@ function hitHandle(p){return handles.findLast(h=>h.kind==='normal'?Math.abs(Math
 function rotateVector(v,axis,angle){const c=Math.cos(angle),s=Math.sin(angle),dot=v.reduce((n,x,i)=>n+x*axis[i],0),cross=[axis[1]*v[2]-axis[2]*v[1],axis[2]*v[0]-axis[0]*v[2],axis[0]*v[1]-axis[1]*v[0]];return v.map((x,i)=>x*c+cross[i]*s+axis[i]*dot*(1-c))}
 
 function visualColor(b){const mat=materialFor(b),col=numbers(get(mat,type(mat)==='ShaderMaterial'?'shader_parameter/albedo':'albedo_color'),4,[.72,.79,.7,1]);return '#'+col.slice(0,3).map(c=>Math.round(Math.max(0,Math.min(1,c))*255).toString(16).padStart(2,'0')).join('')}
-function fit(focus=false){try{let bs=focus&&selected?.kind==='node'?descendants(selected).filter(b=>geom(b)||type(b)==='Marker3D'):drawable();const netPoints=importedNetVisuals().filter(v=>!focus||selected?.kind!=='node'||descendants(selected).includes(v.b)).flatMap(v=>v.corners);if(!bs.length&&!netPoints.length)return;const allPoints=[...bs.flatMap(corners),...netPoints],box={min:[0,1,2].map(i=>Math.min(...allPoints.map(p=>p[i]))),max:[0,1,2].map(i=>Math.max(...allPoints.map(p=>p[i])))};camera.target=box.min.map((x,i)=>(x+box.max[i])/2);camera.pan=[0,0];camera.zoom=1;const pts=allPoints.map(project),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);camera.zoom=Math.min((width-90)/Math.max(1,Math.max(...xs)-Math.min(...xs)),(height-90)/Math.max(1,Math.max(...ys)-Math.min(...ys)));camera.zoom=Math.max(1,Math.min(250,camera.zoom));draw()}catch(e){toast(e.message)}}
+function fit(focus=false){try{let origin;try{origin=simulationOrigin()}catch{}if(focus&&previewStartSelected&&origin){camera.target=origin.position.slice();camera.pan=[0,0];camera.zoom=Math.max(10,Math.min(100,(height-100)/4));draw();return}let bs=focus&&selected?.kind==='node'?descendants(selected).filter(b=>geom(b)||type(b)==='Marker3D'):drawable();const netPoints=importedNetVisuals().filter(v=>!focus||selected?.kind!=='node'||descendants(selected).includes(v.b)).flatMap(v=>v.corners);if(!bs.length&&!netPoints.length&&(!origin||focus))return;const allPoints=[...bs.flatMap(corners),...netPoints,...(!focus&&origin?[origin.position,origin.real]:[])],box={min:[0,1,2].map(i=>Math.min(...allPoints.map(p=>p[i]))),max:[0,1,2].map(i=>Math.max(...allPoints.map(p=>p[i])))};camera.target=box.min.map((x,i)=>(x+box.max[i])/2);camera.pan=[0,0];camera.zoom=1;const pts=allPoints.map(project),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);camera.zoom=Math.min((width-90)/Math.max(1,Math.max(...xs)-Math.min(...xs)),(height-90)/Math.max(1,Math.max(...ys)-Math.min(...ys)));camera.zoom=Math.max(1,Math.min(250,camera.zoom));draw()}catch(e){toast(e.message)}}
 function inside(p,poly,tolerance=0){let on=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){let a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])on=!on}if(on)return true;if(tolerance>0)for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],dx=b[0]-a[0],dy=b[1]-a[1],length=dx*dx+dy*dy,t=length?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/length)):0;if(Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy)<=tolerance)return true}return false}
 canvas.oncontextmenu=e=>e.preventDefault();
 canvas.onpointerdown=e=>{
  if(pointer)return;const rect=canvas.getBoundingClientRect(),p=[e.clientX-rect.left,e.clientY-rect.top];
  const handle=e.button===0?hitHandle(p):null;
+ if(handle?.kind.startsWith('preview')){previewStartSelected=true;pointer={id:e.pointerId,start:p,last:p,button:0,handle,previewBefore:previewOriginSnapshot(),origin:handle.origin.slice(),viewAxes:axes(),zoom:camera.zoom,view:camera.view};canvas.setPointerCapture(e.pointerId);draw();return}
  if(handle){pointer={id:e.pointerId,start:p,last:p,button:0,b:handle.b,before:snapshot(),handle,m:world(handle.b),size:geom(handle.b)?.size,normal:handle.kind==='normal'?unit(vectorMul(world(handle.b),targetNormal(handle.b))):null};canvas.setPointerCapture(e.pointerId);return}
  const matches=hits.filter(h=>inside(p,h.points,h.tolerance)).sort((a,b)=>a.area-b.area),picked=matches[0]?.b;
  if(e.button===0){if(!(mode==='move'&&selected&&descendants(selected).includes(picked)))select(picked||null)}
@@ -646,6 +690,21 @@ canvas.onpointermove=e=>{
  if(!pointer){const rect=canvas.getBoundingClientRect();canvas.style.cursor=hitHandle([e.clientX-rect.left,e.clientY-rect.top])?'grab':'default';return}if(pointer.id!==e.pointerId)return;
  const rect=canvas.getBoundingClientRect(),p=[e.clientX-rect.left,e.clientY-rect.top],dx=p[0]-pointer.last[0],dy=p[1]-pointer.last[1];pointer.last=p;
  if(pointer.button===2||pointer.button===1){if(camera.view==='orbit'&&!e.shiftKey&&pointer.button===2){camera.yaw+=dx*.008;camera.pitch=Math.max(-1.45,Math.min(1.45,camera.pitch+dy*.008))}else{camera.pan[0]+=dx;camera.pan[1]+=dy}draw();return}
+ if(pointer.previewBefore){
+  if(Math.hypot(p[0]-pointer.start[0],p[1]-pointer.start[1])<2&&!pointer.changed)return;
+  try{
+   const h=pointer.handle,next=pointer.origin.slice(),snap=+$('snap').value;
+   if(h.kind==='previewAxis'){
+    next[h.axis]+=((p[0]-pointer.start[0])*h.dir[0]+(p[1]-pointer.start[1])*h.dir[1])/(h.dir[0]**2+h.dir[1]**2);
+    if($('snapOn').checked&&snap>0)next[h.axis]=Math.round(next[h.axis]/snap)*snap;
+   }else{
+    const delta=simulationDragDelta(pointer.start,p,pointer.viewAxes,pointer.zoom,pointer.view);
+    for(let i=0;i<3;i++)if(Math.abs(delta[i])>1e-10){next[i]+=delta[i];if($('snapOn').checked&&snap>0)next[i]=Math.round(next[i]/snap)*snap}
+   }
+   if(next.some((x,i)=>Math.abs(x-pointer.origin[i])>1e-9)||pointer.changed){movePreviewOrigin(next);pointer.changed=true}
+  }catch(e){toast(e.message);cancelPointer()}
+  return;
+ }
  if(pointer.handle){
   try{const h=pointer.handle;
    if(h.kind==='resize'){
@@ -670,8 +729,8 @@ canvas.onpointermove=e=>{
  }catch(e){toast(e.message);finishPointer()}
  }
 };
-function finishPointer(){if(!pointer)return;if(pointer.b&&serialize(doc)!==pointer.before.text){undo.push(pointer.before);redo=[];refresh()}pointer=null}
-function cancelPointer(){if(!pointer)return;const before=pointer.before;pointer=null;restore(before)}
+function finishPointer(){if(!pointer)return;if(pointer.previewBefore){pointer=null;draw();return}if(pointer.b&&serialize(doc)!==pointer.before.text){undo.push(pointer.before);redo=[];refresh()}pointer=null}
+function cancelPointer(){if(!pointer)return;if(pointer.previewBefore){const before=pointer.previewBefore;pointer=null;restorePreviewOrigin(before);return}const before=pointer.before;pointer=null;restore(before)}
 canvas.onpointerup=finishPointer;canvas.onpointercancel=cancelPointer;canvas.onlostpointercapture=finishPointer;
 canvas.addEventListener('wheel',e=>{e.preventDefault();camera.zoom=Math.max(.5,Math.min(500,camera.zoom*Math.exp(-e.deltaY*.001)));draw()},{passive:false});
 for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>{camera.view=b.dataset.view;document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x===b));$('viewLabel').textContent=(camera.view==='orbit'?'ORTHOGRAPHIC 3D':camera.view.toUpperCase())+' · METRES';draw()};
@@ -716,7 +775,7 @@ function exportScene(){
 $('export').onclick=()=>{try{exportScene()}catch(e){toast('Export failed: '+e.message)}};
 $('help').onclick=()=>dialog('Your court, from blockout to Godot',
  '<p><b>1. Start.</b> New level creates a complete basic structure with built-in box visuals. OpenStructure restores the embedded project reference. Padel court opens the embedded copy of Scenes/Courts/PadelCourt.tscn. Import that saved file to load your latest edits. Edit its boxes, markers, materials and surface responses, then export and assign the saved scene to GameplayManager’s PadelCourtScene export in Godot. Sync-PadelTemplate.ps1 updates the embedded copy from the saved file; -Regenerate deliberately replaces it from PadelCourt.cs.</p>'+
- '<p><b>2. Shape.</b> Select meshes or bounds in the tree or viewport. Edit local position, box size, scale, colour and rotation. Right-drag orbits in 3D; Shift + right-drag pans. Resize mode shows axis handles: drag a face handle to resize symmetrically about the box center, with optional grid snapping. Rotate normal shows a draggable ring and the target-facing arrow. Use the normal degree step and paired decrease/increase axis buttons for precise changes. Hold Shift for ten-times finer dragging. Switch views to rotate about different axes. Move mode drags on Top (XZ), Front (XY) or Side (ZY), with optional grid snapping.</p>'+
+ '<p><b>2. Shape.</b> Select meshes or bounds in the tree or viewport. Edit local position, box size, scale, colour and rotation. Right-drag orbits in 3D; Shift + right-drag pans. Resize mode shows axis handles: drag a face handle to resize symmetrically about the box center, with optional grid snapping. Rotate normal shows a draggable ring and the target-facing arrow. Use the normal degree step and paired decrease/increase axis buttons for precise changes. Hold Shift for ten-times finer dragging. Switch views to rotate about different axes. Move mode drags on Top (XZ), Front (XY) or Side (ZY), with optional grid snapping. The violet simulation-start marker is a separate preview control: drag its centre or XYZ handles without changing the green saved StartPosition.</p>'+
  '<p><b>Launch prediction and reaction time.</b> Start ScriptTools/LevelEditor.cmd and open the displayed local address. The launcher samples player speed, ability limits, return rules and racket contact offsets from the actual game scene through headless Godot. Select a target to preview a perfect standard tap from StartPosition using the selected wave flight range. Cyan shows the flight; amber dots mark bounces. Green and purple rings show the valid launch area at current speed and with all eligible earlier speed upgrades. The C# game DLL selects the catch point. Reaction margin is the time from target impact to ball contact minus travel to the nearest ring edge, eased movement into the contact stance, and swing wind-up. A negative margin means that route cannot be completed after reacting to the hit. Expand Simulation settings to change current speed, score/cap, upgrade step, speed gain, return event and launch radius. Check “Hit clears this wave” only when this hit destroys the last regular target; an offered speed upgrade then applies to the return budget, while the existing catch candidate is retained. Clearing the final wave ends the run. Upgrade-choice pauses do not consume game time. The launcher runs a snapshot so builds can continue while it is open; restart after rebuilding to load new tuning. The movement budget assumes a clear straight route from StartPosition, right-handed animation and no Sprint. Volumes use one representative target at their center; moving targets are stationary approximations. Default ball tuning and target prefab sizes are used. Timing error and navigation obstacles are not simulated. Editing and export still work when opened directly as a file.</p>'+
  '<p><b>3. Define behaviour.</b> Presets apply the exact groups used by BoundaryShapePaths.cs. Ground, two side-wall shapes, playable/escape volumes and a start marker are required. Use Level waves to add, duplicate, delete and reorder waves. Each wave owns point markers or box volumes. Points spawn one static target centered at their exact world position with configurable health. Volumes have a target count, static/moving/health type and health. Health points and volumes spawn healing targets; Health restored sets the amount restored when destroyed, capped by the player’s maximum health. Health per target controls damage required to destroy the target. Targets spawn inside these volumes; moving targets patrol within them. Every regular target in a wave must be destroyed before the next begins. Health targets are optional: any left uncollected are removed without healing when the wave clears. A wave containing only health targets advances immediately. Enable “Offer ability upgrade after this wave” to pause for one player-selected ability improvement before continuing (including after the final wave). The rally and ability scores are retained between waves. XP and automatic leveling are not used. An empty wave list completes immediately; individual empty waves are invalid. Old levels open as one finite wave with one static target per enabled target area.</p>'+
  '<p><b>4. Keep visuals and bounds deliberate.</b> The game uses its own box-based physics. Area3D layer/mask 0 and monitoring off are normal. Visuals and collision boxes can differ. “Create matching visual” or “Match size & world transform” copies geometry explicitly. Select an area to move or duplicate both together.</p>'+
