@@ -8,7 +8,7 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit;color:inherit}button,select,input,textarea{background:#202c2a;border:1px solid var(--edge);border-radius:6px}button{padding:8px 11px;cursor:pointer}button:hover{border-color:#80958b;background:#2c3b35}button:disabled{opacity:.4;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}.primary{background:var(--lime);color:#1b291c;font-weight:650;border-color:var(--lime)}.primary:hover{background:#e0ffa1}header{height:76px;display:flex;align-items:center;gap:18px;padding:12px 22px;border-bottom:1px solid var(--edge)}.logo{height:38px;width:38px;border:2px solid var(--lime);border-radius:50%;display:grid;place-items:center;color:var(--lime);font-size:24px}h1{margin:0;font-size:18px;font-weight:600;letter-spacing:-.4px}.eyebrow{color:var(--lime);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}.subtitle{color:var(--muted);font-size:11px}.actions{margin-left:auto;display:flex;gap:7px;align-items:center}.workspace{display:grid;grid-template-columns:254px minmax(300px,1fr) 320px;height:calc(100vh - 108px);min-height:530px}aside{background:var(--panel);overflow:auto}.left{border-right:1px solid var(--edge)}.right{border-left:1px solid var(--edge)}.section{padding:17px;border-bottom:1px solid var(--edge)}h2{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin:0 0 13px}h3{font-size:13px;margin:0 0 12px}.row{display:flex;gap:7px;align-items:center}.row>*{min-width:0}.grow{flex:1}label{display:block;color:var(--muted);font-size:11px;margin-bottom:10px}input:not([type=checkbox]):not([type=color]),select,textarea{width:100%;padding:8px;margin-top:5px}input[type=color]{width:100%;height:34px;margin-top:5px;padding:2px}input[type=checkbox]{accent-color:var(--lime);vertical-align:middle}.check{display:flex;align-items:center;gap:6px;margin:0;font-size:12px}.triplet{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.triplet label{margin-bottom:6px}.small{font-size:11px;color:var(--muted);line-height:1.6}.notice{border-left:2px solid var(--warn);padding:8px 10px;background:#372f2444;font-size:11px;line-height:1.6;color:var(--warn)}.chip{display:inline-block;padding:3px 7px;background:#354329;border-radius:4px;color:var(--lime);font-size:10px}.tree{padding:5px 8px 16px}.node{display:block;text-align:left;width:100%;border:0;background:none;border-radius:5px;padding:7px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}.node.active{background:#34462f;color:var(--lime)}.node small{color:var(--muted);font-size:10px}.dot{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:7px}.center{position:relative;display:flex;flex-direction:column;overflow:hidden}.toolbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--edge);background:#18211de0}.toolbar button{padding:6px 9px;font-size:11px}.toolbar button.active{background:#3b4b32;border-color:#809958;color:var(--lime)}.toolbar select{width:auto;padding:4px;margin:0}.toolbar input{width:52px!important;padding:4px!important;margin:0!important}.viewport{position:relative;flex:1;min-height:200px}canvas{display:block;width:100%;height:100%;touch-action:none}.viewlabel{position:absolute;left:20px;top:18px;pointer-events:none}.viewlabel strong{font-size:13px;font-weight:500}.viewlabel div{margin-top:4px}.legend{position:absolute;bottom:18px;left:20px;display:flex;gap:13px;font-size:10px;color:var(--muted);pointer-events:none}.helpbar{padding:9px 15px;border-top:1px solid var(--edge);color:var(--muted);font-size:11px}.validation{max-height:140px;overflow:auto;padding:11px 15px;background:#18211e;border-top:1px solid var(--edge)}.issue{font-size:11px;line-height:1.7;color:var(--warn)}.issue.error{color:var(--red)}.issue.ok{color:var(--lime)}footer{height:32px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;font-size:11px;border-top:1px solid var(--edge);color:var(--muted)}details{margin-top:12px}summary{cursor:pointer;color:var(--muted);font-size:12px}textarea{resize:vertical;font:11px Consolas,monospace;min-height:140px;tab-size:2;line-height:1.6}dialog{color:var(--text);background:var(--panel);border:1px solid var(--edge);border-radius:12px;max-width:700px;width:90vw;padding:24px;box-shadow:0 20px 100px #0009}dialog::backdrop{background:#0009}dialog h2{color:var(--lime);font-size:14px}dialog p,dialog li{line-height:1.7;color:#c5d2c8;font-size:13px}.dialogactions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.danger{color:var(--red)}#toast{position:fixed;bottom:48px;left:50%;transform:translateX(-50%);padding:12px 20px;background:#d0ef83;color:#15210f;border-radius:8px;z-index:9;max-width:80vw;box-shadow:0 8px 40px #0006}#toast[hidden]{display:none}.tabs{display:flex;gap:5px}.tabs button{flex:1;padding:6px}.asset{display:block;width:100%;text-align:left;font-size:11px;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis}.empty{padding:25px;color:var(--muted);line-height:1.8}.name{overflow-wrap:anywhere}#file{display:none}
 @media(max-width:1050px){.workspace{grid-template-columns:215px minmax(260px,1fr) 280px}header{padding:10px;gap:10px}.actions{gap:4px}.actions button{padding:7px}.subtitle{display:none}}
 @media(max-width:760px){header{height:auto;flex-wrap:wrap}.actions{margin-left:0;width:100%;flex-wrap:wrap}.workspace{height:auto;grid-template-columns:190px minmax(0,1fr)}.right{grid-column:1/-1}.center{height:600px}.left{max-height:600px}footer{height:auto;min-height:32px}}
-.rotation-controls{display:grid;gap:7px;margin:10px 0}.rotation-axis{display:grid;grid-template-columns:minmax(0,1fr) 44px 44px;gap:7px;align-items:center}.rotation-axis span{font-size:12px;color:var(--text)}.rotation-axis button{font-size:16px;padding:5px}.normal-readout{font-variant-numeric:tabular-nums}
+.rotation-controls{display:grid;gap:7px;margin:10px 0}.rotation-axis{display:grid;grid-template-columns:minmax(0,1fr) 44px 44px;gap:7px;align-items:center}.rotation-axis span{font-size:12px;color:var(--text)}.rotation-axis button{font-size:16px;padding:5px}
 </style>
 </head>
 <body>
@@ -16,7 +16,7 @@
 <input id="file" type="file" accept=".tscn">
 <main class="workspace">
 <aside class="left"><div class="section"><h2>Level waves</h2><div id="waveList"></div><button id="addWave">＋ Add wave</button><p class="small">Viewport shows the selected wave. Clear every regular target to advance. Uncollected health targets disappear without healing. All waves cleared ends the run. Add a point for one target at an exact position, or a volume for random placement. Select a spawner to edit its position and health.</p></div><div class="section"><h2>Build your level</h2><label>Element<select id="preset"></select></label><label class="check"><input type="checkbox" id="withVisual" checked> Include visual for solid boundaries</label><button id="add" style="width:100%;margin-top:12px">＋ Add element</button></div><div class="section"><div class="tabs"><button id="sceneTab">Scene tree</button><button id="assetsTab">Resources</button></div><input id="search" placeholder="Find a node or group…" aria-label="Find a node or group"></div><div id="tree" class="tree"></div></aside>
-<section class="center"><div class="toolbar"><button data-view="orbit" class="active">3D</button><button data-view="top">Top</button><button data-view="front">Front</button><button data-view="side">Side</button><button id="fit">Fit all</button><button id="focus">Focus</button><span class="grow"></span><label class="check"><input id="visuals" type="checkbox" checked> Visuals</label><label class="check"><input id="bounds" type="checkbox" checked> Bounds</label></div><div class="toolbar"><button id="selectMode" class="active">Select</button><button id="moveMode">Move</button><button id="resizeMode">Resize</button><button id="normalMode">Rotate normal</button><span class="small">Drag handles · Move in Top / Front / Side</span><span class="grow"></span><label class="check"><input id="snapOn" type="checkbox" checked> Snap</label><input id="snap" type="number" min=".01" step=".1" value=".25" aria-label="Snap size in metres"><span class="small">m</span></div><div class="toolbar"><label class="check"><input id="previewOn" type="checkbox" checked> Launch prediction</label><button id="previewRetry">Refresh prediction</button><span class="small" id="previewStatus" role="status">Select a target to preview.</span></div><div class="viewport"><canvas id="canvas" aria-label="Interactive level viewport"></canvas><div class="viewlabel"><strong id="sceneLabel">OpenStructure</strong><div class="small" id="viewLabel">ORTHOGRAPHIC 3D · METRES</div></div><div class="legend"><span><i class="dot" style="background:#d5ddd0"></i>Visual</span><span><i class="dot" style="background:#86b7e7"></i>Boundary</span><span><i class="dot" style="background:#e8b562"></i>Target</span><span><i class="dot" style="background:#97d787"></i>Playable</span></div></div><div class="helpbar">Click to select · Right-drag to orbit / pan · Wheel to zoom · F to focus · Delete removes selected subtree</div><div class="validation" id="validation" aria-live="polite"></div></section>
+<section class="center"><div class="toolbar"><button data-view="orbit" class="active">3D</button><button data-view="top">Top</button><button data-view="front">Front</button><button data-view="side">Side</button><button id="fit">Fit all</button><button id="focus">Focus</button><span class="grow"></span><label class="check"><input id="visuals" type="checkbox" checked> Visuals</label><label class="check"><input id="bounds" type="checkbox" checked> Bounds</label></div><div class="toolbar"><button id="selectMode" class="active">Select</button><button id="moveMode">Move</button><button id="resizeMode">Resize</button><button id="returnMode">Move return point</button><span class="small">Drag handles · Move in Top / Front / Side</span><span class="grow"></span><label class="check"><input id="snapOn" type="checkbox" checked> Snap</label><input id="snap" type="number" min=".01" step=".1" value=".25" aria-label="Snap size in metres"><span class="small">m</span></div><div class="toolbar"><label class="check"><input id="previewOn" type="checkbox" checked> Launch prediction</label><label class="check"><input id="targetLaunchOn" type="checkbox" checked> Show target launch trajectory</label><button id="previewRetry">Refresh prediction</button><span class="small" id="previewStatus" role="status">Select a target to preview.</span></div><div class="viewport"><canvas id="canvas" aria-label="Interactive level viewport"></canvas><div class="viewlabel"><strong id="sceneLabel">OpenStructure</strong><div class="small" id="viewLabel">ORTHOGRAPHIC 3D · METRES</div></div><div class="legend"><span><i class="dot" style="background:#d5ddd0"></i>Visual</span><span><i class="dot" style="background:#86b7e7"></i>Boundary</span><span><i class="dot" style="background:#e8b562"></i>Target</span><span><i class="dot" style="background:#97d787"></i>Playable</span></div></div><div class="helpbar">Click to select · Right-drag to orbit / pan · Wheel to zoom · F to focus · Delete removes selected subtree</div><div class="validation" id="validation" aria-live="polite"></div></section>
 <aside class="right" id="inspector"></aside>
 </main><footer><span id="status">Ready</span><span>Local & offline · Godot 4 text scenes · No uploads</span></footer>
 <dialog id="modal"><div id="modalBody"></div><div class="dialogactions" id="modalActions"></div></dialog><div id="toast" role="status" hidden></div>
@@ -192,7 +192,7 @@ function dialog(title,body,buttons){$('modalBody').innerHTML='<h2>'+esc(title)+'
 function discardThen(fn){if(serialize(doc)!==savedText)dialog('Replace this scene?','<p>Your current edits have not been exported. Export first if you want to keep them.</p>',[['Cancel'],['Replace scene',fn,'danger']]);else fn()}
 function loadScene(text,file){const next=parse(text);undo.push(snapshot());redo=[];doc=next;selected=null;resetPreviewStart();previewTargetPath='';filename=file;savedText=text;previewStartSelected=false;if(!groupShapes('explicit_boundary').length)ensureWaves();refresh();fit();toast('Loaded '+file)}
 function refresh(){renderWaves();renderTree();renderInspector();renderValidation();draw();$('undo').disabled=!undo.length;$('redo').disabled=!redo.length;$('sceneLabel').textContent=name(nodes()[0]);$('status').textContent=filename+' · '+nodes().length+' nodes · '+(serialize(doc)!==savedText?'Unsaved changes':'Ready')}
-function select(b){previewStartSelected=false;selected=b;renderWaves();renderTree();renderInspector();draw()}
+function select(b){previewStartSelected=false;selected=b;const target=b?.kind==='node'?waveVolumeOwner(b):null;if(target)previewTargetPath=path(target);renderWaves();renderTree();renderInspector();draw()}
 function renderTree(){const root=$('tree');root.replaceChildren();const query=$('search').value.toLowerCase();let list=assetMode?doc.blocks.filter(b=>b.kind.includes('resource')):nodes();for(const b of list){if(!(name(b)+' '+groups(b)+' '+path(b)).toLowerCase().includes(query))continue;const el=document.createElement('button');el.className=(assetMode?'asset':'node')+(b===selected?' active':'');if(!assetMode)el.style.paddingLeft=(8+(path(b)==='.'?0:path(b).split('/').length)*11)+'px';el.innerHTML='<span class="dot" style="background:'+role(b)[2]+'"></span>'+esc(name(b))+(assetMode?'<br><small>'+esc(type(b))+'</small>':'');el.title=assetMode?type(b)+' '+name(b):path(b)+' · '+type(b);el.onclick=()=>select(b);root.append(el)}}
 function field(label,value,onChange,kind='text',opts={}){const wrap=document.createElement('label');wrap.textContent=label;const input=document.createElement('input');input.type=kind;if(kind==='checkbox'){input.checked=value===true||value==='true';wrap.className='check'}else input.value=value;Object.assign(input,opts);input.onchange=()=>onChange(kind==='checkbox'?input.checked:input.value);wrap.append(input);return wrap}
 function section(title){const el=document.createElement('div');el.className='section';if(title){const h=document.createElement('h2');h.textContent=title;el.append(h)}$('inspector').append(el);return el}
@@ -321,31 +321,14 @@ function waveVolumeFields(v){
  const launchSection=section('Launch after target hit');
  try{triple(launchSection,'Return destination · world metres',targetLaunchPosition(v),(i,value)=>{const p=targetLaunchPosition(v);p[i]=value;set(v,'metadata/wave_target_launch_position',vec(p))},{step:'.1'})}catch(e){const warning=document.createElement('p');warning.className='notice';warning.textContent=e.message;launchSection.append(warning)}
  launchSection.append(field('Return flight time / seconds',get(v,'metadata/wave_target_launch_duration_seconds','1.5'),x=>edit(()=>{const n=num(x);if(n<.05||n>10)throw Error('Return flight time must be between 0.05 and 10 seconds.');set(v,'metadata/wave_target_launch_duration_seconds',fmt(n))}),'number',{min:'.05',max:'10',step:'.05'}));
- const launchNote=document.createElement('p');launchNote.className='small';launchNote.textContent='At contact, this target launches the same ball toward this world point in the chosen time. Ground/wall contacts can interrupt the arc. Without an override, destination follows saved StartPosition X/Z at ground height + 0.04 m; time is 1.5 s. Simulation start does not change the return destination. Normal and old rebound coefficient do not steer this launch.';launchSection.append(launchNote);
+ const launchNote=document.createElement('p');launchNote.className='small';launchNote.textContent='At contact, this target launches the same ball toward this world point in the chosen time. Ground/wall contacts can interrupt the arc. Without an override, destination follows saved StartPosition X/Z at ground height + 0.04 m; time is 1.5 s. Simulation start does not change the return destination. Drag the pink return marker along X/Z in 3D; its XYZ handles change one world axis. Hold Shift for finer movement. Changes are saved with this target.';launchSection.append(launchNote);
+ button(launchSection,'Move return point in viewport',()=>{select(v);setMode('return');fit(true)});
  button(launchSection,'Use saved start destination',()=>edit(()=>set(v,'metadata/wave_target_launch_position',null)));
  button(launchSection,'Use default return time',()=>edit(()=>set(v,'metadata/wave_target_launch_duration_seconds',null)));
  if(isWavePoint(v)){const note=document.createElement('p');note.className='small';note.textContent='Spawns one stationary target centered at this point. Set its position above and health below.';s.append(note)}
  if(!isWavePoint(v))s.append(field('Target count',get(v,'metadata/wave_target_count','1'),x=>edit(()=>{const n=num(x);if(!Number.isInteger(n)||n<1||n>1000)throw Error('Count must be an integer from 1 to 1000.');set(v,'metadata/wave_target_count',String(n))}),'number',{min:'1',max:'1000',step:'1'}));
  s.append(field('Health per target',get(v,'metadata/wave_target_health','10'),x=>edit(()=>{const n=num(x);if(n<=0)throw Error('Health must be positive.');set(v,'metadata/wave_target_health',fmt(n))}),'number',{min:'.001',step:'1'}));
  if(isHealthTarget(v))s.append(field('Health restored',get(v,'metadata/wave_target_heal_amount','10'),x=>edit(()=>{const n=num(x);if(!Number.isInteger(n)||n<1||n>1000000)throw Error('Health restored must be an integer from 1 to 1000000.');set(v,'metadata/wave_target_heal_amount',String(n))}),'number',{min:'1',max:'1000000',step:'1'}));
- const normalSection=section('Target normal');
- const readout=document.createElement('p');readout.className='small normal-readout';
- try{const worldNormal=unit(vectorMul(world(v),targetNormal(v)));readout.textContent='World direction: '+worldNormal.map(x=>+x.toFixed(4)).join(', ')}catch(e){readout.textContent=e.message+' Use Reset normal to repair it.'}
- normalSection.append(readout);
- normalSection.append(field('Normal rotation step / degrees',normalStepDegrees,value=>{try{normalStepDegrees=rotationStep(value);renderInspector()}catch(e){toast(e.message);renderInspector()}},'number',{min:'.01',max:'180',step:'.1',id:'normalRotationStep'}));
- const controls=document.createElement('div');controls.className='rotation-controls';
- for(const [axis,label] of ['Pitch · X','Yaw · Y','Roll · Z'].entries()){
-  const row=document.createElement('div');row.className='rotation-axis';const text=document.createElement('span');text.textContent=label;row.append(text);
-  for(const sign of [-1,1]){const b=button(row,sign<0?'−':'+',()=>edit(()=>rotateTargetNormal(v,axis,sign*normalStepDegrees)));b.setAttribute('aria-label',(sign<0?'Decrease ':'Increase ')+'normal '+['pitch','yaw','roll'][axis]);b.title=(sign<0?'Decrease ':'Increase ')+label+' by '+normalStepDegrees+'°'}
-  controls.append(row);
- }
- normalSection.append(controls);
- button(normalSection,'Rotate normal in viewport',()=>setMode('normal'));
- const note=document.createElement('p');note.className='small';note.textContent='Buttons rotate about world axes. Drag the ring in Top for yaw, Side for pitch, or Front for roll. Snap uses the degree step above; hold Shift to drag ten times more finely. Only the facing direction changes.';normalSection.append(note);
- const advanced=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Local direction · XYZ';advanced.append(summary);
- try{triple(advanced,'Unit direction relative to target',targetNormal(v),(i,value)=>{const n=targetNormal(v);n[i]=value;set(v,'metadata/wave_target_normal',vec(unit(n)))},{step:'.01'})}catch{}
- normalSection.append(advanced);
- button(normalSection,'Reset normal (local −Z)',()=>edit(()=>set(v,'metadata/wave_target_normal',null)));
  const label=document.createElement('label');label.textContent='Target type';const pick=document.createElement('select');for(const t of (isWavePoint(v)?['static','health']:['static','moving','health'])){const o=document.createElement('option');o.value=t;o.textContent=t==='health'?'Health':t==='static'?'Static':'Moving';pick.append(o)}pick.value=unquote(get(v,'metadata/wave_target_type',quote('static')));pick.onchange=()=>edit(()=>set(v,'metadata/wave_target_type',quote(pick.value)));label.append(pick);s.append(label);
 }
 function validateWaves(add){
@@ -355,7 +338,6 @@ function validateWaves(add){
   const vs=nodes().filter(v=>parent(v)===w);if(!vs.length)add('Wave needs at least one spawner.',w);
   for(const v of vs){const shape=nodes().find(n=>path(n)===path(v)+'/Shape'),g=shape&&geom(shape);
    if(!isSpatial(v)||(!isWavePoint(v)&&(type(shape)!=='CollisionShape3D'||!g)))add('Wave volume requires a BoxShape3D child named Shape.',v);
-   try{unit(vectorMul(world(v),targetNormal(v)))}catch(e){add(e.message,v)}
    try{targetLaunchPosition(v);targetLaunchDuration(v)}catch(e){add(e.message,v)}
    const c=Number(get(v,'metadata/wave_target_count','1')),h=Number(get(v,'metadata/wave_target_health','10')),t=unquote(get(v,'metadata/wave_target_type',quote('static')));
    if(isWavePoint(v)&&(c!==1||!['static','health'].includes(t)))add('A point must spawn exactly one static or health target.',v);
@@ -381,7 +363,7 @@ function renderValidation(){let report;try{report=validate()}catch(e){report={er
 // the grid, picking, focus and bounds validation share the same world geometry.
 const canvas=$('canvas'),ctx=canvas.getContext('2d');
 let camera={view:'orbit',yaw:.62,pitch:.57,zoom:23,pan:[0,0],target:[0,1,-2]},mode='select',hits=[],handles=[],pointer=null,width=700,height=650;
-let normalStepDegrees=1,objectRotationDegrees=15,previewStartSelected=false;
+let objectRotationDegrees=15,previewStartSelected=false;
 // Geometry goes to the service; flight and bounce calculations run in TennisBall.dll.
 let prediction=null,previewKey='',previewTimer=null,previewVersion=0,previewTargetPath='';
 // Snapshot of EditorReactionRunner's imported practice-net geometry for offline editing.
@@ -394,7 +376,7 @@ startPanel.innerHTML='<details open style="width:100%;margin:0"><summary>Launch 
  '<button id="previewMoveStart">Move simulation start</button><button id="previewRestoreStart">Restore real start</button><label class="check"><input id="previewAmberPath" type="checkbox"> Show amber bounce-shot trajectory</label></div>'+
  '<p class="small"><span style="color:#d5b5ff">Violet: simulation start · preview only.</span> <span style="color:#b9ed91">Green: real StartPosition · saved.</span> Drag the violet marker in 3D along the ground; use its XYZ handles for height or a single axis. Top moves X/Z, Front X/Y, Side Z/Y. Snap uses metres; Escape cancels a drag. Simulation edits are never saved into the scene.</p><div id="previewOriginStatus" class="small" role="status"></div>'+
  '<div id="amberStatus" role="status" class="small" style="color:#ffc15c">Select a target to preview its amber ground area.</div>'+
-  '<p class="small">Amber ring/dashed path: Training bounce-before-target route. Cyan path: continuous direct shot and target return. Orange dots: collision/launch contacts. Pink square: return destination. Green ring: current-speed reaction area.</p></details>';
+  '<p class="small">Cyan direct and dashed amber player paths stop at target contact. Pink and dashed purple paths show the outgoing target launches. Pink square: saved return point. Amber ring: Training bounce-before-target area. Green ring: current-speed reaction area.</p></details>';
 canvas.closest('.center').insertBefore(startPanel,canvas.closest('.viewport'));
 function invalidatePreview(){previewKey='';prediction=null;clearTimeout(previewTimer);previewVersion++;draw()}
 function resetPreviewStart(){ $('previewUseMarker').checked=true; }
@@ -469,7 +451,7 @@ function previewPayload(){
  for(const v of nodes().filter(n=>parent(n)===wave)){
   const sh=descendants(v).find(b=>type(b)==='CollisionShape3D'&&geom(b)),center=isWavePoint(v)?world(v).slice(9):box([sh]).center;
   const kind=unquote(get(v,'metadata/wave_target_type',quote('static')));
-  bodies.push({center,size:[0,0,0],radius:kind==='moving'?.08443399:kind==='health'?.16597731:.33010292,normal:unit(vectorMul(world(v),targetNormal(v))),launchPosition:targetLaunchPosition(v),launchDurationSeconds:targetLaunchDuration(v)});
+  bodies.push({center,size:[0,0,0],radius:kind==='moving'?.08443399:kind==='health'?.16597731:.33010292,normal:[0,0,-1],launchPosition:targetLaunchPosition(v),launchDurationSeconds:targetLaunchDuration(v)});
   if(v===target){aim=center;selectedTargetIndex=bodies.length-1}
  }
  const bounds=key=>{const shapes=groupShapes(key);return shapes.length?box(shapes):null};
@@ -503,18 +485,30 @@ function drawAmberPrediction(amber){
   for(let j=0;j<=64;j++){const a=j*Math.PI/32,p=project([amber.center[0]+Math.cos(a)*amber.radius,amber.center[1],amber.center[2]+Math.sin(a)*amber.radius]);if(j===0)ctx.moveTo(p[0],p[1]);else ctx.lineTo(p[0],p[1])}ctx.closePath();ctx.fill();ctx.stroke();
   const p=project(amber.center);ctx.fillStyle='#ffbd4f';ctx.fillText('Training amber · bounce before target',p[0]+8,p[1]-10);
  }
- if($('previewAmberPath').checked&&amber.found&&amber.points?.length){
-  ctx.strokeStyle='#ffbd4f';ctx.lineWidth=2;ctx.setLineDash([7,5]);ctx.beginPath();
-  amber.points.forEach((p,i)=>{const q=project(p);if(i===0)ctx.moveTo(q[0],q[1]);else ctx.lineTo(q[0],q[1])});ctx.stroke();ctx.setLineDash([]);
-  for(const i of amber.bounces||[]){const p=amber.points[i];if(!p)continue;const q=project(p);ctx.strokeRect(q[0]-4,q[1]-4,8,8)}
- }
+ if($('previewAmberPath').checked&&amber.found){drawIncomingTrajectory(amber,true);if($('targetLaunchOn').checked)drawTargetLaunchTrajectory(amber,true)}
 }
+// Incoming shot ends at contact; the target's launch owns the separate outgoing stroke.
+function drawIncomingTrajectory(result,alternate=false){
+ const points=result.points||[],hit=result.targetHitIndex,end=Number.isInteger(hit)&&hit>=0?Math.min(hit,points.length-1):points.length-1;
+ ctx.strokeStyle=alternate?'#ffbd4f':'#7fe9ff';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=2;ctx.setLineDash(alternate?[7,5]:[]);ctx.beginPath();
+ points.slice(0,end+1).forEach((p,i)=>{const q=project(p);if(i===0)ctx.moveTo(q[0],q[1]);else ctx.lineTo(q[0],q[1])});ctx.stroke();ctx.setLineDash([]);
+ for(const i of result.bounces||[]){if(i>=end||!points[i])continue;const q=project(points[i]);ctx.beginPath();ctx.arc(q[0],q[1],4,0,Math.PI*2);ctx.fill()}
+}
+// Draw the native post-target path, retaining contacts after the launch.
+function drawTargetLaunchTrajectory(result,alternate=false){
+ const points=result.points||[],start=result.targetHitIndex;
+ if(!Number.isInteger(start)||start<0||start>=points.length)return;
+ ctx.strokeStyle=alternate?'#d994ff':'#ff9fc7';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=alternate?2:2.5;ctx.setLineDash(alternate?[7,5]:[]);ctx.beginPath();
+ points.slice(start).forEach((p,i)=>{const q=project(p);if(i===0)ctx.moveTo(q[0],q[1]);else ctx.lineTo(q[0],q[1])});ctx.stroke();ctx.setLineDash([]);
+ for(const i of result.bounces||[]){if(i<start||!points[i])continue;const q=project(points[i]);ctx.beginPath();ctx.arc(q[0],q[1],4,0,Math.PI*2);ctx.fill()}
+ const hit=project(points[start]);ctx.beginPath();ctx.arc(hit[0],hit[1],6,0,Math.PI*2);ctx.fill();ctx.font='11px Segoe UI';ctx.fillText(alternate?'Alternate target launch':'Target launch',hit[0]+10,hit[1]-(alternate?24:9));
+ const end=project(points.at(-1));ctx.fillText(alternate?'Alternate return end':'Target return end',end[0]+8,end[1]+(alternate?14:0));
+}
+
 function drawPrediction(){
  const marker=nodes().find(n=>groups(n).includes('start_position'));if(marker&&$('previewUseMarker').checked)previewStart(marker);
  let payload=null,error='';
  if($('previewOn').checked)try{payload=previewPayload()}catch(e){error=e.message}
- const launchOwner=payload?.bodies[payload.selectedTargetIndex];
- if(launchOwner?.launchPosition){const p=project(launchOwner.launchPosition);ctx.strokeStyle='#f5a1e7';ctx.lineWidth=2;ctx.strokeRect(p[0]-6,p[1]-6,12,12);ctx.fillStyle='#f5a1e7';ctx.fillText(`Return destination · ${launchOwner.launchDurationSeconds.toFixed(2)} s`,p[0]+10,p[1]+16)}
  const key=JSON.stringify({payload,error,on:$('previewOn').checked});
  if(key!==previewKey){
   previewKey=key;prediction=null;clearTimeout(previewTimer);const version=++previewVersion;
@@ -532,7 +526,7 @@ function drawPrediction(){
      const result=await response.json();if(!response.ok)throw Error(result.error||'Preview failed.');
      if(version!==previewVersion)return;prediction=result;
      showReactionResults(result);showAmberResult(result.amber);
-     $('previewStatus').textContent=`${result.flightTime.toFixed(3)} s to aim / ${result.bounces.length} contacts · Direct return: ${returnNetStatus(result)} · volumes and motion approximated`;
+     $('previewStatus').textContent=`Target launch · ${payload.bodies[payload.selectedTargetIndex].launchDurationSeconds.toFixed(2)} s to destination · ${returnNetStatus(result)} · volumes and motion approximated`;
      draw();
     }catch(e){if(version===previewVersion){$('previewStatus').textContent='Prediction unavailable: '+e.message+' Start LevelEditor.cmd and refresh.';$('reactionResults').textContent='Reaction prediction unavailable.';$('amberStatus').textContent='Amber prediction unavailable.'}}
    },180);
@@ -540,11 +534,8 @@ function drawPrediction(){
  }
  if(!prediction){if(error||!payload||!$('previewOn').checked)$('amberStatus').textContent=error||(!$('previewOn').checked?'Amber prediction hidden.':'Select a target point or volume.');return}
  drawAmberPrediction(prediction.amber);
- const points=prediction.points;ctx.lineWidth=2.5;ctx.strokeStyle='#7fe9ff';ctx.beginPath();
- points.forEach((p,i)=>{const q=project(p);if(i===0)ctx.moveTo(q[0],q[1]);else ctx.lineTo(q[0],q[1])});ctx.stroke();
- for(const i of prediction.bounces){const p=project(points[i]);ctx.fillStyle='#ffc96b';ctx.beginPath();ctx.arc(p[0],p[1],4,0,Math.PI*2);ctx.fill()}
- if(prediction.targetHitIndex>=0&&points[prediction.targetHitIndex]){const hit=project(points[prediction.targetHitIndex]);ctx.fillStyle='#f5a1e7';ctx.beginPath();ctx.arc(hit[0],hit[1],6,0,Math.PI*2);ctx.fill();ctx.fillText('Target contact · launch',hit[0]+10,hit[1]-9)}
- const end=project(points.at(-1));ctx.fillStyle='#7fe9ff';ctx.fillText('End of prediction',end[0]+8,end[1]);
+ drawIncomingTrajectory(prediction);
+ if($('targetLaunchOn').checked)drawTargetLaunchTrajectory(prediction);
   const r=(prediction.reactions||[])[0];if(r?.position){
    ctx.strokeStyle='#97d787';ctx.lineWidth=2;ctx.setLineDash([]);ctx.beginPath();
   for(let j=0;j<=64;j++){const a=j*Math.PI/32,p=project([r.position[0]+Math.cos(a)*r.radius,r.position[1],r.position[2]+Math.sin(a)*r.radius]);if(j===0)ctx.moveTo(p[0],p[1]);else ctx.lineTo(p[0],p[1])}ctx.stroke();ctx.setLineDash([]);
@@ -552,7 +543,7 @@ function drawPrediction(){
   ctx.beginPath();for(const [j,v] of [r.entry,r.stance].entries()){const q=project(v);if(j===0)ctx.moveTo(q[0],q[1]);else ctx.lineTo(q[0],q[1])}ctx.stroke();
  }
 }
-$('previewOn').onchange=()=>draw();$('previewRetry').onclick=()=>{previewKey='';draw()};
+$('targetLaunchOn').onchange=()=>draw();$('previewOn').onchange=()=>draw();$('previewRetry').onclick=()=>{previewKey='';draw()};
 
 function simulationOrigin(){const marker=nodes().find(n=>groups(n).includes('start_position'));return marker?{marker,real:world(marker).slice(9),position:previewStart(marker)}:null}
 function previewOriginSnapshot(){return {linked:$('previewUseMarker').checked,values:['X','Y','Z'].map(axis=>$('previewStart'+axis).value)}}
@@ -594,6 +585,27 @@ function drawSimulationStart(){
    }
   }
  }catch(e){move.disabled=true;status.textContent='Simulation start: '+e.message}
+}
+// Destinations are world-space metadata, independent of target and parent transforms.
+function drawTargetReturn(){
+ const b=returnOwner();if(!b)return;
+ try{
+  const origin=targetLaunchPosition(b),p=project(origin),shape=descendants(b).find(n=>geom(n)),target=project(world(shape||b).slice(9)),ground=project([origin[0],0,origin[2]]),color='#ff9fc7';
+  const line=(a,z,ink,width=1)=>{ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(z[0],z[1]);ctx.strokeStyle=ink;ctx.lineWidth=width;ctx.stroke()};
+  ctx.setLineDash([5,5]);line(target,p,color+'99');line(ground,p,color+'aa');ctx.setLineDash([]);
+  ctx.beginPath();ctx.ellipse(ground[0],ground[1],10,4,0,0,Math.PI*2);ctx.strokeStyle=color;ctx.lineWidth=1;ctx.stroke();
+  polygon([[p[0]-8,p[1]-8],[p[0]+8,p[1]-8],[p[0]+8,p[1]+8],[p[0]-8,p[1]+8]],'#63384c',color,2);
+  const label=(text,x,y)=>{ctx.font='bold 10px Segoe UI';const w=ctx.measureText(text).width;x=Math.max(6,Math.min(width-w-6,x));y=Math.max(16,Math.min(height-8,y));ctx.fillStyle='#15201ff0';ctx.fillRect(x-4,y-12,w+8,18);ctx.fillStyle=color;ctx.fillText(text,x,y)};
+  const active=mode==='return'&&!previewStartSelected;
+  label('RETURN POINT · SAVED · '+targetLaunchDuration(b).toFixed(2)+' s',p[0]+17,p[1]-(active?80:18));
+  handles.push({kind:'returnFree',b,p,origin});
+  if(active)for(let axis=0;axis<3;axis++){
+   const v=origin.slice();v[axis]+=1;const q=project(v),dir=[q[0]-p[0],q[1]-p[1]],length=Math.hypot(...dir);if(length/Math.max(camera.zoom,1e-9)<.1)continue;
+   const end=[p[0]+dir[0]/length*58,p[1]+dir[1]/length*58];line(p,end,['#ed9993','#a4d381','#84bdf2'][axis],2);
+   ctx.fillStyle='#202c2a';ctx.fillRect(end[0]-6,end[1]-6,12,12);ctx.strokeStyle=color;ctx.lineWidth=2;ctx.strokeRect(end[0]-6,end[1]-6,12,12);
+   label('RETURN '+'XYZ'[axis],end[0]+10,end[1]-8);handles.push({kind:'returnAxis',b,p:end,axis,dir,origin});
+  }
+ }catch{} // Invalid metadata is repaired through the inspector/reset button.
 }
 function importedNetVisuals(){
  if(!$('visuals').checked)return [];
@@ -654,12 +666,12 @@ function draw(){
  drawPrediction();
  drawEditingHandles(objects);
  drawSimulationStart();
+ drawTargetReturn();
  // Small orientation compass.
  const base=[width-49,height-47],cols=['#df9892','#a4d381','#84aedc'];
  ctx.font='10px Segoe UI';[0,1,2].forEach(i=>{const dx=axesNow[0][i]*25,dy=-axesNow[1][i]*25;ctx.strokeStyle=cols[i];ctx.beginPath();ctx.moveTo(...base);ctx.lineTo(base[0]+dx,base[1]+dy);ctx.stroke();ctx.fillStyle=cols[i];ctx.fillText('XYZ'[i],base[0]+dx+3,base[1]+dy+3)});
 }
 
-function unit(v){const len=Math.hypot(...v);if(!Number.isFinite(len)||len<1e-9)throw Error('Target normal must be finite and nonzero.');return v.map(x=>x/len)}
 function targetLaunchPosition(v){
  const raw=get(v,'metadata/wave_target_launch_position');
  if(raw!==''){const p=/^Vector3\(/.test(raw)?numbers(raw,3,[NaN,NaN,NaN]):[NaN,NaN,NaN];if(!p.every(Number.isFinite))throw Error('Return destination must be a finite Vector3.');return p}
@@ -667,41 +679,36 @@ function targetLaunchPosition(v){
  const p=world(marker).slice(9),shapes=groupShapes('ground_bounds');p[1]=(shapes.length?combined(shapes).max[1]:0)+.04;return p;
 }
 function targetLaunchDuration(v){const n=Number(get(v,'metadata/wave_target_launch_duration_seconds','1.5'));if(!Number.isFinite(n)||n<.05||n>10)throw Error('Return flight time must be finite and between 0.05 and 10 seconds.');return n}
-function targetNormal(v){const raw=get(v,'metadata/wave_target_normal','Vector3(0, 0, -1)');if(!/^Vector3\(/.test(raw))throw Error('Target normal must be a Vector3.');return unit(numbers(raw,3,[NaN,NaN,NaN]))}
 function rotationStep(value){const degrees=num(value);if(degrees<.01||degrees>180)throw Error('Use a rotation step from 0.01° to 180°.');return degrees}
-function rotateTargetNormal(v,axis,degrees){const basis=[0,0,0];basis[axis]=1;const m=world(v),n=unit(vectorMul(m,targetNormal(v))),rotated=rotateVector(n,basis,degrees*Math.PI/180);set(v,'metadata/wave_target_normal',vec(unit(inverseVector(m,rotated))))}
 function rotateObject(b,axis,degrees){const angle=degrees*Math.PI/180,c=Math.cos(angle),s=Math.sin(angle),rot=axis===0?[1,0,0,0,c,s,0,-s,c,0,0,0]:axis===1?[c,0,-s,0,1,0,s,0,c,0,0,0]:[c,s,0,-s,c,0,0,0,1,0,0,0],a=local(b),p=a.slice(9);a.splice(9,3,0,0,0);const result=multiply(rot,a);result.splice(9,3,...p);writeTransform(b,result)}
 function resizeNode(){if(selected?.kind!=='node')return null;if(geom(selected))return selected;const shapes=descendants(selected).filter(b=>type(b)==='CollisionShape3D'&&geom(b));return shapes.length===1?shapes[0]:null}
-function normalOwner(){return selected?.kind==='node'?waveVolumeOwner(selected):null}
-function setMode(value){finishPointer();mode=value;for(const key of ['select','move','resize','normal'])$(key+'Mode').classList.toggle('active',key===value);draw();if(value==='move'&&camera.view==='orbit')toast('Choose Top, Front or Side to drag elements.');if(value==='resize'&&!resizeNode())toast('Select a box or an area with one box to resize.');if(value==='normal'&&!normalOwner())toast('Select a wave target point or volume to rotate its normal.')}
+function returnOwner(){return (selected?.kind==='node'?waveVolumeOwner(selected):null)||(waveNodes().includes(selected)?nodes().find(n=>path(n)===previewTargetPath&&waveOwner(n)===selected):null)}
+function setMode(value){finishPointer();mode=value;if(value==='return')previewStartSelected=false;for(const key of ['select','move','resize','return'])$(key+'Mode').classList.toggle('active',key===value);draw();if(value==='move'&&camera.view==='orbit')toast('Choose Top, Front or Side to drag elements.');if(value==='resize'&&!resizeNode())toast('Select a box or an area with one box to resize.');if(value==='return'&&!returnOwner())toast('Select a wave target point or volume to move its return point.')}
 function drawEditingHandles(objects){
  handles=[];const visible=new Set(objects.map(o=>o.b));
- for(const v of new Set(objects.map(o=>waveVolumeOwner(o.b)).filter(Boolean))){
-  try{const shape=descendants(v).find(b=>geom(b)),center=world(shape||v).slice(9),n=unit(vectorMul(world(v),targetNormal(v))),p=project(center),q=project(center.map((x,i)=>x+n[i]*1.8)),angle=Math.atan2(q[1]-p[1],q[0]-p[0]);
-   ctx.strokeStyle='#ffc96b';ctx.fillStyle='#ffc96b';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();
-   if(Math.hypot(q[0]-p[0],q[1]-p[1])>4)polygon([q,[q[0]-10*Math.cos(angle-.45),q[1]-10*Math.sin(angle-.45)],[q[0]-10*Math.cos(angle+.45),q[1]-10*Math.sin(angle+.45)]],'#ffc96b');
-   else{ctx.beginPath();ctx.arc(p[0],p[1],5,0,Math.PI*2);ctx.stroke()}
-   if(v===normalOwner()){ctx.font='12px Segoe UI';ctx.fillText('Normal',q[0]+10,q[1]-10);if(mode==='normal'){ctx.beginPath();ctx.arc(p[0],p[1],64,0,Math.PI*2);ctx.strokeStyle='#ffe7b5';ctx.lineWidth=3;ctx.stroke();handles.push({kind:'normal',b:v,center:p,radius:64})}}
-  }catch{}
- }
  const b=resizeNode();if(mode!=='resize'||!b||!visible.has(b))return;
  const g=geom(b),m=world(b),cols=['#ed9993','#a4d381','#84bdf2'];
  for(let axis=0;axis<3;axis++)for(const sign of [-1,1]){const v=[0,0,0];v[axis]=sign*g.size[axis]/2;const p=project(point(m,v)),dir=project(point(m,v.map((x,i)=>x+(i===axis?sign:0)))).map((x,i)=>x-p[i]);if(Math.hypot(dir[0],dir[1])<.1)continue;
   ctx.fillStyle=cols[axis];ctx.fillRect(p[0]-6,p[1]-6,12,12);ctx.strokeStyle='#101817';ctx.lineWidth=2;ctx.strokeRect(p[0]-6,p[1]-6,12,12);ctx.font='12px Segoe UI';ctx.fillText('XYZ'[axis],p[0]+10,p[1]-9);handles.push({kind:'resize',b,axis,sign,p,dir});
  }
 }
-function hitHandle(p){return handles.findLast(h=>h.kind==='normal'?Math.abs(Math.hypot(p[0]-h.center[0],p[1]-h.center[1])-h.radius)<9:Math.hypot(p[0]-h.p[0],p[1]-h.p[1])<12)}
-function rotateVector(v,axis,angle){const c=Math.cos(angle),s=Math.sin(angle),dot=v.reduce((n,x,i)=>n+x*axis[i],0),cross=[axis[1]*v[2]-axis[2]*v[1],axis[2]*v[0]-axis[0]*v[2],axis[0]*v[1]-axis[1]*v[0]];return v.map((x,i)=>x*c+cross[i]*s+axis[i]*dot*(1-c))}
+function hitHandle(p){
+ const matches=handles.filter(h=>Math.hypot(p[0]-h.p[0],p[1]-h.p[1])<12);
+ // Explicit gizmo ownership takes priority over overlapping overlay draw order.
+ const active=previewStartSelected?'preview':mode==='return'?'return':null;
+ return (active&&matches.findLast(h=>h.kind.startsWith(active)))||matches.at(-1);
+}
 
 function visualColor(b){const mat=materialFor(b),col=numbers(get(mat,type(mat)==='ShaderMaterial'?'shader_parameter/albedo':'albedo_color'),4,[.72,.79,.7,1]);return '#'+col.slice(0,3).map(c=>Math.round(Math.max(0,Math.min(1,c))*255).toString(16).padStart(2,'0')).join('')}
-function fit(focus=false){try{let origin;try{origin=simulationOrigin()}catch{}if(focus&&previewStartSelected&&origin){camera.target=origin.position.slice();camera.pan=[0,0];camera.zoom=Math.max(10,Math.min(100,(height-100)/4));draw();return}let bs=focus&&selected?.kind==='node'?descendants(selected).filter(b=>geom(b)||type(b)==='Marker3D'):drawable();const netPoints=importedNetVisuals().filter(v=>!focus||selected?.kind!=='node'||descendants(selected).includes(v.b)).flatMap(v=>v.corners);if(!bs.length&&!netPoints.length&&(!origin||focus))return;const allPoints=[...bs.flatMap(corners),...netPoints,...(!focus&&origin?[origin.position,origin.real]:[])],box={min:[0,1,2].map(i=>Math.min(...allPoints.map(p=>p[i]))),max:[0,1,2].map(i=>Math.max(...allPoints.map(p=>p[i])))};camera.target=box.min.map((x,i)=>(x+box.max[i])/2);camera.pan=[0,0];camera.zoom=1;const pts=allPoints.map(project),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);camera.zoom=Math.min((width-90)/Math.max(1,Math.max(...xs)-Math.min(...xs)),(height-90)/Math.max(1,Math.max(...ys)-Math.min(...ys)));camera.zoom=Math.max(1,Math.min(250,camera.zoom));draw()}catch(e){toast(e.message)}}
+function fit(focus=false){try{let origin;try{origin=simulationOrigin()}catch{}if(focus&&mode==='return'&&!previewStartSelected&&returnOwner()){camera.target=targetLaunchPosition(returnOwner());camera.pan=[0,0];camera.zoom=Math.max(10,Math.min(100,(height-100)/4));draw();return}if(focus&&previewStartSelected&&origin){camera.target=origin.position.slice();camera.pan=[0,0];camera.zoom=Math.max(10,Math.min(100,(height-100)/4));draw();return}let bs=focus&&selected?.kind==='node'?descendants(selected).filter(b=>geom(b)||type(b)==='Marker3D'):drawable();const netPoints=importedNetVisuals().filter(v=>!focus||selected?.kind!=='node'||descendants(selected).includes(v.b)).flatMap(v=>v.corners);if(!bs.length&&!netPoints.length&&(!origin||focus))return;const allPoints=[...bs.flatMap(corners),...netPoints,...(!focus&&origin?[origin.position,origin.real]:[])],box={min:[0,1,2].map(i=>Math.min(...allPoints.map(p=>p[i]))),max:[0,1,2].map(i=>Math.max(...allPoints.map(p=>p[i])))};camera.target=box.min.map((x,i)=>(x+box.max[i])/2);camera.pan=[0,0];camera.zoom=1;const pts=allPoints.map(project),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);camera.zoom=Math.min((width-90)/Math.max(1,Math.max(...xs)-Math.min(...xs)),(height-90)/Math.max(1,Math.max(...ys)-Math.min(...ys)));camera.zoom=Math.max(1,Math.min(250,camera.zoom));draw()}catch(e){toast(e.message)}}
 function inside(p,poly,tolerance=0){let on=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){let a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])on=!on}if(on)return true;if(tolerance>0)for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],dx=b[0]-a[0],dy=b[1]-a[1],length=dx*dx+dy*dy,t=length?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/length)):0;if(Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy)<=tolerance)return true}return false}
 canvas.oncontextmenu=e=>e.preventDefault();
 canvas.onpointerdown=e=>{
  if(pointer)return;const rect=canvas.getBoundingClientRect(),p=[e.clientX-rect.left,e.clientY-rect.top];
  const handle=e.button===0?hitHandle(p):null;
  if(handle?.kind.startsWith('preview')){previewStartSelected=true;pointer={id:e.pointerId,start:p,last:p,button:0,handle,previewBefore:previewOriginSnapshot(),origin:handle.origin.slice(),viewAxes:axes(),zoom:camera.zoom,view:camera.view};canvas.setPointerCapture(e.pointerId);draw();return}
- if(handle){pointer={id:e.pointerId,start:p,last:p,button:0,b:handle.b,before:snapshot(),handle,m:world(handle.b),size:geom(handle.b)?.size,normal:handle.kind==='normal'?unit(vectorMul(world(handle.b),targetNormal(handle.b))):null};canvas.setPointerCapture(e.pointerId);return}
+ if(handle?.kind.startsWith('return')){select(handle.b);previewStartSelected=false;mode='return';for(const key of ['select','move','resize','return'])$(key+'Mode').classList.toggle('active',key===mode);pointer={id:e.pointerId,start:p,last:p,button:0,b:handle.b,before:snapshot(),handle,origin:handle.origin.slice(),viewAxes:axes(),zoom:camera.zoom,view:camera.view};canvas.setPointerCapture(e.pointerId);draw();return}
+ if(handle){pointer={id:e.pointerId,start:p,last:p,button:0,b:handle.b,before:snapshot(),handle,m:world(handle.b),size:geom(handle.b)?.size};canvas.setPointerCapture(e.pointerId);return}
  const matches=hits.filter(h=>inside(p,h.points,h.tolerance)).sort((a,b)=>a.area-b.area),picked=matches[0]?.b;
  if(e.button===0){if(!(mode==='move'&&selected&&descendants(selected).includes(picked)))select(picked||null)}
  pointer={id:e.pointerId,start:p,last:p,button:e.button,b:mode==='move'&&e.button===0&&camera.view!=='orbit'&&isSpatial(selected)?selected:null,before:snapshot(),m:selected?.kind==='node'?local(selected):null};
@@ -726,18 +733,27 @@ canvas.onpointermove=e=>{
   }catch(e){toast(e.message);cancelPointer()}
   return;
  }
+ if(pointer.handle?.kind.startsWith('return')){
+  if(Math.hypot(p[0]-pointer.start[0],p[1]-pointer.start[1])<2&&!pointer.changed)return;
+  try{
+   const h=pointer.handle,next=pointer.origin.slice(),precision=e.shiftKey ? .1 : 1,snap=+$('snap').value*precision;
+   if(h.kind==='returnAxis'){
+    const delta=((p[0]-pointer.start[0])*h.dir[0]+(p[1]-pointer.start[1])*h.dir[1])/(h.dir[0]**2+h.dir[1]**2)*precision;
+    if(Math.abs(delta)>1e-10){next[h.axis]+=delta;if($('snapOn').checked&&snap>0)next[h.axis]=Math.round(next[h.axis]/snap)*snap}
+   }else{
+    const delta=simulationDragDelta(pointer.start,p,pointer.viewAxes,pointer.zoom,pointer.view);
+    for(let i=0;i<3;i++)if(Math.abs(delta[i])>1e-10){next[i]+=delta[i]*precision;if($('snapOn').checked&&snap>0)next[i]=Math.round(next[i]/snap)*snap}
+   }
+   if(next.some((x,i)=>Math.abs(x-pointer.origin[i])>1e-9)||pointer.changed){set(h.b,'metadata/wave_target_launch_position',vec(next));pointer.changed=true;renderInspector();invalidatePreview()}
+  }catch(e){toast(e.message);cancelPointer()}
+  return;
+ }
  if(pointer.handle){
   try{const h=pointer.handle;
    if(h.kind==='resize'){
     const delta=2*((p[0]-pointer.start[0])*h.dir[0]+(p[1]-pointer.start[1])*h.dir[1])/(h.dir[0]**2+h.dir[1]**2),size=pointer.size.slice();let value=size[h.axis]+delta;
     const snap=+$('snap').value;if($('snapOn').checked&&snap>0)value=Math.round(value/snap)*snap;size[h.axis]=Math.max(.001,value);
     if(size.some((x,i)=>Math.abs(x-geom(h.b).size[i])>1e-9)){pointer.resource??=privateResource(h.b,geom(h.b).key);set(pointer.resource,'size',vec(size))}
-   }else{
-    const center=h.center;let angle=Math.atan2(p[1]-center[1],p[0]-center[0])-Math.atan2(pointer.start[1]-center[1],pointer.start[0]-center[0]);
-    const precision=e.shiftKey ? .1 : 1;if(e.shiftKey)angle*=precision;
-    const angularStep=normalStepDegrees*Math.PI/180*precision;
-    if($('snapOn').checked)angle=Math.round(angle/angularStep)*angularStep;
-    if(Math.abs(angle)>1e-9||pointer.changed){const a=axes(),rotationAxis=[a[0][1]*a[1][2]-a[0][2]*a[1][1],a[0][2]*a[1][0]-a[0][0]*a[1][2],a[0][0]*a[1][1]-a[0][1]*a[1][0]],n=rotateVector(pointer.normal,rotationAxis,-angle);set(h.b,'metadata/wave_target_normal',vec(unit(inverseVector(pointer.m,n))));pointer.changed=true}
    }
    renderInspector();draw();
   }catch(e){toast(e.message);finishPointer()}
@@ -755,7 +771,7 @@ function cancelPointer(){if(!pointer)return;if(pointer.previewBefore){const befo
 canvas.onpointerup=finishPointer;canvas.onpointercancel=cancelPointer;canvas.onlostpointercapture=finishPointer;
 canvas.addEventListener('wheel',e=>{e.preventDefault();camera.zoom=Math.max(.5,Math.min(500,camera.zoom*Math.exp(-e.deltaY*.001)));draw()},{passive:false});
 for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>{camera.view=b.dataset.view;document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x===b));$('viewLabel').textContent=(camera.view==='orbit'?'ORTHOGRAPHIC 3D':camera.view.toUpperCase())+' · METRES';draw()};
-for(const key of ['select','move','resize','normal'])$(key+'Mode').onclick=()=>setMode(key);
+for(const key of ['select','move','resize','return'])$(key+'Mode').onclick=()=>setMode(key);
 
 $('fit').onclick=()=>fit();$('focus').onclick=()=>fit(true);$('visuals').onchange=draw;$('bounds').onchange=draw;
 $('search').oninput=renderTree;$('sceneTab').onclick=()=>{assetMode=false;renderTree()};$('assetsTab').onclick=()=>{assetMode=true;renderTree()};
@@ -797,8 +813,8 @@ function exportScene(){
 $('export').onclick=()=>{try{exportScene()}catch(e){toast('Export failed: '+e.message)}};
 $('help').onclick=()=>dialog('Your court, from blockout to Godot',
  '<p><b>1. Start.</b> New level creates a complete basic structure with built-in box visuals. OpenStructure restores the embedded project reference. Padel court opens the embedded copy of Scenes/Courts/PadelCourt.tscn. Import that saved file to load your latest edits. Edit its boxes, markers, materials and surface responses, then export and assign the saved scene to GameplayManager’s PadelCourtScene export in Godot. Sync-PadelTemplate.ps1 updates the embedded copy from the saved file; -Regenerate deliberately replaces it from PadelCourt.cs.</p>'+
- '<p><b>2. Shape.</b> Select meshes or bounds in the tree or viewport. Edit local position, box size, scale, colour and rotation. Right-drag orbits in 3D; Shift + right-drag pans. Resize mode shows axis handles: drag a face handle to resize symmetrically about the box center, with optional grid snapping. Rotate normal shows a draggable ring and the target-facing arrow. Use the normal degree step and paired decrease/increase axis buttons for precise changes. Hold Shift for ten-times finer dragging. Switch views to rotate about different axes. Move mode drags on Top (XZ), Front (XY) or Side (ZY), with optional grid snapping. The violet simulation-start marker is a separate preview control: drag its centre or XYZ handles without changing the green saved StartPosition.</p>'+
-  '<p><b>Launch prediction and reaction time.</b> Start ScriptTools/LevelEditor.cmd and open the displayed local address. The launcher samples player speed, ability limits, return rules and racket contact offsets from the actual game scene through headless Godot. Select a target to preview a perfect standard tap from StartPosition using the selected wave flight range. Cyan shows the continuous flight before and after target contact; amber dots mark contacts. The pink contact label marks the authored launch and the pink square its destination. Set Return destination world XYZ and Return flight time in the target inspector. Ground/wall contacts can interrupt the solved arc. Both direct and bounce routes report return net clearance. The green ring shows the valid launch area at current speed; the preview keeps that speed fixed through the wave and does not model a wave speed gain. The C# game DLL selects the catch point. Reaction margin is the time from target impact to ball contact minus travel to the nearest ring edge, eased movement into the contact stance, and swing wind-up. A negative margin means that route cannot be completed after reacting to the hit. Expand Simulation settings to change current speed, return event and launch radius. Check “Hit clears this wave” only when this hit destroys the last regular target. Clearing the final wave ends the run. The launcher runs a snapshot so builds can continue while it is open; restart after rebuilding to load new tuning. The movement budget assumes a clear straight route from StartPosition, right-handed animation and no Sprint. Volumes use one representative target at their center; moving targets are stationary approximations. Default ball tuning and target prefab sizes are used. Timing error and navigation obstacles are not simulated. Editing and export still work when opened directly as a file.</p>'+
+ '<p><b>2. Shape.</b> Select meshes or bounds in the tree or viewport. Edit local position, box size, scale, colour and rotation. Right-drag orbits in 3D; Shift + right-drag pans. Resize mode shows axis handles: drag a face handle to resize symmetrically about the box center, with optional grid snapping. Select a target to show its pink saved return point. Drag the marker in 3D along X/Z, or use Move return point and its XYZ handles for height or a single axis. Top moves X/Z, Front X/Y and Side Z/Y. Hold Shift for ten-times finer return-point movement. Escape cancels; each completed drag is one undo step. Move mode drags on Top (XZ), Front (XY) or Side (ZY), with optional grid snapping. The violet simulation-start marker is a separate preview control: drag its centre or XYZ handles without changing the green saved StartPosition.</p>'+
+  '<p><b>Launch prediction and reaction time.</b> Start ScriptTools/LevelEditor.cmd and open the displayed local address. The launcher samples player speed, ability limits, return rules and racket contact offsets from the actual game scene through headless Godot. Select a target to preview a perfect standard tap from StartPosition using the selected wave flight range. Cyan shows the incoming player shot up to target contact. The optional amber bounce-shot also ends at contact. A separate pink target-launch trajectory continues from contact through subsequent bounces; its alternate is dashed purple. Show target launch trajectory toggles only these outgoing paths. The draggable pink square is the saved destination and remains visible with prediction hidden. Set Return destination world XYZ and Return flight time in the target inspector. Ground/wall contacts can interrupt the solved arc. Both direct and bounce routes report return net clearance. The green ring shows the valid launch area at current speed; the preview keeps that speed fixed through the wave and does not model a wave speed gain. The C# game DLL selects the catch point. Reaction margin is the time from target impact to ball contact minus travel to the nearest ring edge, eased movement into the contact stance, and swing wind-up. A negative margin means that route cannot be completed after reacting to the hit. Expand Simulation settings to change current speed, return event and launch radius. Check “Hit clears this wave” only when this hit destroys the last regular target. Clearing the final wave ends the run. The launcher runs a snapshot so builds can continue while it is open; restart after rebuilding to load new tuning. The movement budget assumes a clear straight route from StartPosition, right-handed animation and no Sprint. Volumes use one representative target at their center; moving targets are stationary approximations. Default ball tuning and target prefab sizes are used. Timing error and navigation obstacles are not simulated. Editing and export still work when opened directly as a file.</p>'+
   '<p><b>3. Define behaviour.</b> Presets apply the exact groups used by BoundaryShapePaths.cs. Ground, two side-wall shapes, playable/escape volumes and a start marker are required. Use Level waves to add, duplicate, delete and reorder waves. Each wave owns point markers or box volumes. Points spawn one static target centered at their exact world position with configurable health. Volumes have a target count, static/moving/health type and health. Health points and volumes spawn healing targets; Health restored sets the amount restored when destroyed, capped by the player’s maximum health. Health per target controls damage required to destroy the target. Targets spawn inside these volumes; moving targets patrol within them. Every regular target in a wave must be destroyed before the next begins. Health targets are optional: any left uncollected are removed without healing when the wave clears. A wave containing only health targets advances immediately. The rally score is retained between waves. XP and automatic leveling are not used. An empty wave list completes immediately; individual empty waves are invalid. Old levels open as one finite wave with one static target per enabled target area.</p>'+
  '<p><b>4. Keep visuals and bounds deliberate.</b> The game uses its own box-based physics. Area3D layer/mask 0 and monitoring off are normal. Visuals and collision boxes can differ. “Create matching visual” or “Match size & world transform” copies geometry explicitly. Select an area to move or duplicate both together.</p>'+
  '<p><b>5. Save.</b> Export checks structure rules and saves/downloads a .tscn. Ctrl+S exports, Ctrl+Z undoes, Ctrl+Shift+Z redoes. There is no automatic disk write. Keep the HTML file anywhere; it has no internet dependencies.</p>'+
